@@ -1,17 +1,25 @@
-<!Doctype html>
+<!DOCTYPE html>
 
 <html>
 	<head>
 		<title>
 			SellMyBooks
 		</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+		<script src="app.js"></script>
 	</head>
 
-	<body>
-		Sell My Books
-		
-		
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js">
-		</script>
+	<body ng-app="bookRouter">
+		<div class="container">
+			Sell My Books
+				<div ui-view></div>  <!This is where partials get injected>
+		</div>
+
 	</body>
+
+
+
+
+
 </html>
