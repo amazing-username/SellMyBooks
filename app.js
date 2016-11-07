@@ -4,9 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var create_user = require('./routes/create_user');
+var listings = require('./routes/listingRoutes');
+
+mongoose.connect('mongodb://localhost:27017/SellMyBooks');
 
 var app = express();
 
@@ -24,6 +29,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/create_user', create_user);
+app.use('/api', listings);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
