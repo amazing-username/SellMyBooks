@@ -6,8 +6,7 @@ var ListingSchema = new Schema({
 	author : String,
 	isbn : String,
 	cost : {
-		type: Number,
-		required: true
+		type: Number
 	},
 	stat : String,
 	data_created : {
