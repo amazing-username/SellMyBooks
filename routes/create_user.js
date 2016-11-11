@@ -4,7 +4,8 @@ var mongoose = require('mongoose');
 var User = require('../models/users.js');
 var path = require('path');
 
-router.route('users').post(function(req, res)
+
+router.route('/create_user').post(function(req, res)
 {
 	var user = new User();
 	user.username = req.body.username;
@@ -12,6 +13,13 @@ router.route('users').post(function(req, res)
 	user.firstname = req.body.firstname;
 	user.lastname = req.body.lastname;
 	user.emailaddress = req.body.emailaddress;
+
+	user.save(function(err)
+	{
+		res.json(
+		{
+			message: 'Created a User'
+		});
 
 }	
 
