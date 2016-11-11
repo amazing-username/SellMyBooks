@@ -1,4 +1,3 @@
-var app = angular.module('bookApp', []);
 var bookRouter = angular.module('bookRouter', ['ui.router']);
 
 
@@ -11,7 +10,8 @@ bookRouter.config(function($stateProvider, $urlRouterProvider) {
 
     .state('home', {
       url: '/home',
-      templateUrl: 'partial-home.html'
+      templateUrl: 'partial-home.html',
+      //controller: 'MainCtrl'
     })
 
     .state('home.newlisting', {
@@ -24,15 +24,3 @@ bookRouter.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'partial-test.html'
     });
 });
-
-
-app.controller('MainCtrl', [
-  '$scope',
-  function($scope){
-    $scope.test="test stuff";
-    $scope.listings = $http.get('/listings').success(function(data){
-      angular.copy(data)
-    })
-
-  }
-]);

@@ -1,10 +1,18 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-var Listing = new mongoose.Schema({
-  title: String,
-  author: String,
-  seller: String,
-  price: Number
+var ListingSchema = new Schema({
+	title : String,
+	author : String,
+	isbn : String,
+	cost : {
+		type: Number
+	},
+	stat : String,
+	data_created : {
+		type: Date,
+		default: Date.now
+	}	
 });
 
-mongoose.model('Listing', Listing);
+module.exports = mongoose.model('Listing' , ListingSchema);

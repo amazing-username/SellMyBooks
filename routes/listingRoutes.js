@@ -6,7 +6,7 @@ var Listing = require('../models/listings.js');
 router.route('/listings')
 
 	.post(function(req, res) {
-	
+
 		var listing = new Listing();
 		listing.title = req.body.title;
 		listing.author = req.body.author;
@@ -15,18 +15,18 @@ router.route('/listings')
 		listing.stat = req.body.stat;
 
 		listing.save(function(err) {
-			if (err) 
+			if (err)
 				res.send(err);
-		 
+
 			res.json({message: 'Created Listing'});
-	
+
 		});
 });
 
 router.route('/listings/update')
 
 	.post(function(req, res) {
-		
+
 		Listing.findById(req.body.listing_id, function(err, listing) {
 
 			if (err)
@@ -40,18 +40,18 @@ router.route('/listings/update')
 			}
 			if (req.body.isbn) {
 				listing.isbn = req.body.isbn;
-			} 
+			}
 			if (req.body.cost) {
 				listing.cost = req.body.cost;
 			}
 			if (req.body.stat) {
 				listing.stat = req.body.stat;
 			}
-			
+
 			listing.save(function(err) {
 				if (err)
 					res.send(err);
-				
+
 				res.json({ message: "Listing Updated"});
 			});
 		});
@@ -63,7 +63,7 @@ router.route('/listings/get')
 		Listing.find(function(err, listings) {
 			if (err)
 				res.send(err);
-			
+
 			res.json(listings);
 		});
 });

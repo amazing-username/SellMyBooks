@@ -1,6 +1,19 @@
-<form action="localhost:3000/listings" method= "post" id="listform">
+<form action="localhost:3000/api/listings" method= "post" id="listform">
   <p>Title: <input type="text" name="title"> </p>
   <p>Author: <input type="text" name="author"> </p>
-  <p>Seller: <input type="text" name="seller"> </p>
-  <p>Price: <input type="number" name="price"> </p>
-  <input type="submit" value="Post Book">
+  <p>ISBN: <input type="text" name="isbn"> </p>
+  <p>Cost: <input type="number" name="cost"> </p>
+  <p>Status: <input type="text" name="stat"> </p>
+<input type="button" onclick="post()">
+</form>
+
+
+
+
+  cost : {
+		type: Number
+	},
+	stat : String,
+	data_created : {
+		type: Date,
+		default: Date.now

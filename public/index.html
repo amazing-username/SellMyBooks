@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html ng-app="bookRouter">
 	<head>
 		<title>
 			SellMyBooks
@@ -8,12 +8,36 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
 		<script src="app.js"></script>
+		<script src="controllers/maincontroller.js"></script>
 	</head>
 
-	<body ng-app="bookRouter">
-		<div class="container">
+	<body >
+		<div class="container" ng-controller="MainCtrl">
 			Sell My Books
-			{{ test }}
+
+			{{booklist}}
+			<table class="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+						<th>ISBN</th>
+						<th>Cost</th>
+						<th>Status</th>
+						<th>Listed On</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="books in booklist">
+            <td>{{books.title}}</td>
+            <td>{{books.author}}</td>
+						<td>{{books.isbn}}</td>
+						<td>{{books.cost}}</td>
+						<td>{{books.stat}}</td>
+						<td>{{books.data_created}}</td>
+          </tr>
+        </tbody>
+      </table>
 				<div ui-view></div>  <!This is where partials get injected>
 		</div>
 

@@ -6,10 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-var mongoose = require('mongoose');
-require('./models/Listings');
-mongoose.connect('mongodb://localhost/SellMyBooks');
-
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var create_user = require('./routes/create_user');
@@ -18,9 +14,6 @@ var listings = require('./routes/listingRoutes');
 mongoose.connect('mongodb://localhost:27017/SellMyBooks');
 
 var app = express();
-
-
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -1,3 +1,5 @@
+
+/*
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
@@ -14,6 +16,8 @@ router.route('/create_user').post(function(req, res)
 	user.lastname = req.body.lastname;
 	user.emailaddress = req.body.emailaddress;
 
+
+
 	user.save(function(err)
 	{
 		res.json(
@@ -21,7 +25,21 @@ router.route('/create_user').post(function(req, res)
 			message: 'Created a User'
 		});
 
-}	
+});
+
+/* Get to create user page */
+
+/*
+router.get('/', function(req, res, next) {
+	res.sendFile('create_user.html');
+});
+
+module.exports = router;
+*/
+
+var express = require('express');
+var router = express.Router();
+var path = require('path');
 
 /* Get to create user page */
 router.get('/', function(req, res, next) {
