@@ -14,6 +14,11 @@ bookRouter.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'partial-home.html'
     })
 
+    .state('home.newlisting', {
+      url: '/newlisting',
+      templateUrl: 'partial-newlisting.html'
+    })
+
     .state('test', {
       url: '/test',
       templateUrl: 'partial-test.html'
@@ -24,6 +29,10 @@ bookRouter.config(function($stateProvider, $urlRouterProvider) {
 app.controller('MainCtrl', [
   '$scope',
   function($scope){
+    $scope.test="test stuff";
+    $scope.listings = $http.get('/listings').success(function(data){
+      angular.copy(data)
+    })
 
   }
 ]);
