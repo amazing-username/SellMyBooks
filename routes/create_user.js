@@ -88,6 +88,12 @@ router.route('/create_user/delete:user_id').delete(function(req, res)
 		});
 	});	
 });
+		res.json(
+		{
+			message: 'Created a User'
+		});
+
+}	
 
 /* Get to create user page */
 router.get('/', function(req, res, next) {
