@@ -1,7 +1,10 @@
-<div>
-  <h1>Home</h1>
-  <a ui-sref=".newlisting">New Listing</a>
+<div class="flexwrapper">
+  <h1 class="hometitle">Sell My Books Home</h1>
+  <form ng-submit="searchBasic()" class="homeSearchBar">
+  <input type="text" name="title" ng-model="searchTerm" size="100px">
+  <button type="submit">Search</button>
+  </form>
+
+
 
 </div>
-
-<div ui-view></div>

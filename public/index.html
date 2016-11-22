@@ -2,6 +2,8 @@
 
 <html ng-app="bookRouter">
 	<head>
+		<link rel="stylesheet" href="stylesheets/style.css" type="text/css">
+
 		<title>
 			SellMyBooks
 		</title>
@@ -13,31 +15,13 @@
 
 	<body >
 		<div class="container" ng-controller="MainCtrl">
-			Sell My Books
+			<div class="flexwrapper">
+				<a ui-sref=".home" class="navLink">Home</a>
+				<a ui-sref=".newlisting" class="navLink">New Listing</a>
+				<a ui-sref=".listall" class="navLink">Show All Listings</a>
+			</div>
 
-			{{booklist}}
-			<table class="table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Author</th>
-						<th>ISBN</th>
-						<th>Cost</th>
-						<th>Status</th>
-						<th>Listed On</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="books in booklist">
-            <td>{{books.title}}</td>
-            <td>{{books.author}}</td>
-						<td>{{books.isbn}}</td>
-						<td>{{books.cost}}</td>
-						<td>{{books.stat}}</td>
-						<td>{{books.data_created}}</td>
-          </tr>
-        </tbody>
-      </table>
+
 				<div ui-view></div>  <!This is where partials get injected>
 		</div>
 

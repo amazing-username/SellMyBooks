@@ -1,0 +1,24 @@
+<div class="flexwrapper">
+  <table class="listAllTable">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>ISBN</th>
+        <th>Cost</th>
+        <th>Status</th>
+        <th>Listed On</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="books in booklist">
+        <td>{{books.title}}</td>
+        <td>{{books.author}}</td>
+        <td>{{books.isbn}}</td>
+        <td>{{books.cost}}</td>
+        <td>{{books.stat}}</td>
+        <td>{{books.data_created}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

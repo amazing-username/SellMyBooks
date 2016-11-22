@@ -9,18 +9,27 @@ bookRouter.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
     .state('home', {
-      url: '/home',
-      templateUrl: 'partial-home.html',
+      url: '/',
+      templateUrl: 'partial-home.html'
       //controller: 'MainCtrl'
     })
 
-    .state('home.newlisting', {
+    .state('newlisting', {
       url: '/newlisting',
       templateUrl: 'partial-newlisting.html'
     })
 
+    .state('listall', {
+      url: '/listall',
+      templateUrl: 'partial-listall.html',
+      controller: 'MainCtrl'
+
+
+    })
+
     .state('test', {
       url: '/test',
-      templateUrl: 'partial-test.html'
-    });
+      templateUrl: 'partial-test.html',
+    })
+
 });

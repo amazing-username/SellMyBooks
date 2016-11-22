@@ -1,19 +1,9 @@
-<form action="localhost:3000/api/listings" method= "post" id="listform">
-  <p>Title: <input type="text" name="title"> </p>
-  <p>Author: <input type="text" name="author"> </p>
-  <p>ISBN: <input type="text" name="isbn"> </p>
-  <p>Cost: <input type="number" name="cost"> </p>
-  <p>Status: <input type="text" name="stat"> </p>
-<input type="button" onclick="post()">
-</form>
-
-
-
-
-  cost : {
-		type: Number
-	},
-	stat : String,
-	data_created : {
-		type: Date,
-		default: Date.now
+<div class="flexwrapper">
+  <form ng-submit="addListing()" class="newListingForm">
+    <p>Title: <input type="text" name="title" ng-model="listing.title"> </p>
+    <p>Author: <input type="text" name="author" ng-model="listing.author"> </p>
+    <p>ISBN: <input type="text" name="isbn" ng-model="listing.isbn"> </p>
+    <p>Cost: <input type="number" name="cost" ng-model="listing.cost"> </p>
+  <button type="submit">Post</button>
+  </form>
+</div>

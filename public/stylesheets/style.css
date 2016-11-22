@@ -1,8 +1,77 @@
 body {
-  padding: 50px;
+  padding: 10px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+.navLink.a{
+  color:white;
+}
+
+.flexwrapper{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+
+}
+.hometitle{
+  text-align: center;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width:100%;
+  border: 4px solid blue;
+  margin-top: 15px;
+
+}
+.homeSearchBar{
+  width:75%;
+  border: 3px solid blue;
+  text-align: center;
+  padding:25px;
+  height: 75px;
+
+  display:flex;
+  align-items: center;
+
+}
+
+.newListingForm{
+  width:75%;
+  border: 1px solid black;
+  text-align: center;
+  padding:25px;
+
+}
+
+.listAllTable{
+  width:75%;
+  border: 1px solid black;
+  text-align: center;
+  padding:25px;
+
+}
+.navLink{
+  width:33%;
+  border: 1px solid black;
+  background-color: blue;
+  text-align: center;
+  vertical-align: middle;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  text-decoration: none;
+  color: white;
+
+
+
+}
+.navLink:hover{
+  background-color: red;
 }

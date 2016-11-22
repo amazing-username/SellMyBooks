@@ -7,6 +7,7 @@ router.route('/listings')
 
 	.post(function(req, res) {
 
+
 		var listing = new Listing();
 		listing.title = req.body.title;
 		listing.author = req.body.author;
