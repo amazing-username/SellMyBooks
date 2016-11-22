@@ -81,43 +81,66 @@ bookRouter.controller('ListCtrl', ['$scope', '$http', function($scope, $http){
   }
 ]);
 
-bookRouter.controller('EditCtrl', ['$scope', '$http', '$stateParams', function($scope, $http, $stateParams){
-  $scope.listId = $stateParams.listingId;
-  $scope.route = "/api/listings/get/" + $scope.listId;
-  $http.get($scope.route).success(function(response)
+bookRouter.controller('EditCtrl', ['$scope', '$http', '$stateParams', '$state', function($scope, $http, $stateParams, $state){
+
+  $scope.listing="";
+  if($stateParams.listingId !== "")
+  {
+    $scope.listId = $stateParams.listingId;
+    $scope.route = "/api/listings/get/" + $scope.listId;
+
+    $http.get($scope.route).success(function(response)
+      {
+        if(response)
+        {
+          $scope.listing = response;
+          console.log("got dat data, filling in the edit form.");
+        }
+        else
+        {
+          alert("Your current route is invalid. The id you gave had no results. I'm going to route you back home.");
+          $state.transitionTo('home');
+        }
+      })
+
+    $scope.editListing = function()
     {
-      alert($scope.listId)
-      alert(response);
-      $scope.listing = response;
-    })
 
-    $scope.editListing = function(){
+      $http.post('/api/listings/update', {
+        listing_id: $scope.listId,
+        title: $scope.listing.title,
+        author: $scope.listing.author,
+        isbn: $scope.listing.isbn,
+        cost: $scope.listing.cost,
+        stat: $scope.listing.stat
 
-        $http.post('/api/listings/update', {
-          listing_id: $scope.listId,
-          title: $scope.listing.title,
-          author: $scope.listing.author,
-          isbn: $scope.listing.isbn,
-          cost: $scope.listing.cost,
-          stat: $scope.listing.stat
+      }).success(function(data)
+      {
+          console.log("success, goin' home!");
+          $state.transitionTo('home');
+      }).error(function(data)
+      {
+          alert("You did something wrong.");
+      })
+    };
+  }
+  else
+  {
+    alert("Your current route is invalid. You need to include the listing id after the end slash. I'm going to route you back home.");
+    $state.transitionTo('home');
+  }
+}]);
 
-        }).
-        success(function(data) {
-          console.log("success");
-        }).error(function(data) {
-          console.log("error");
-
-        })
-        };
-  }]);
-
-bookRouter.controller('NewListCtrl', ['$scope', '$http', function($scope, $http){
+bookRouter.controller('NewListCtrl', ['$scope', '$http', '$state', function($scope, $http, $state){
 
   $scope.listing = {};
 
   console.log("Hello World from new list controller");
 
   $scope.addListing = function(){
+
+      if($scope.listing.title && $scope.listing.author && $scope.listing.isbn && $scope.listing.cost)
+      {
 
       $http.post('/api/listings', {
         title: $scope.listing.title,
@@ -127,12 +150,23 @@ bookRouter.controller('NewListCtrl', ['$scope', '$http', function($scope, $http)
         stat: "forSale"
 
       }).
-      success(function(data) {
-        console.log("success");
-      }).error(function(data) {
-        console.log("error");
+      success(function(data)
+      {
+
+        console.log("put that listing in that database so hard. goin' home.");
+        $state.transitionTo('home');
+
+      }).error(function(data)
+      {
+
+        alert("You messed something up.");
+        console.log("error, WHAT DID YOU DO");
 
       })
-      };
+      }
+      else{
+        alert("fill in the form, what are you DOING");
+      }
+    };
   }
 ]);

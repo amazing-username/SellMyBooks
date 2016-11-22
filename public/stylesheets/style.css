@@ -1,6 +1,7 @@
 body {
   padding: 10px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #a5c7ff;
 }
 
 a {
@@ -19,6 +20,7 @@ a {
 
 }
 .hometitle{
+  background-color: white;
   text-align: center;
   display:flex;
   align-items: center;
@@ -30,6 +32,7 @@ a {
 
 }
 .homeSearchBar{
+  background-color: white;
   width:75%;
   border: 3px solid blue;
   text-align: center;
@@ -42,18 +45,22 @@ a {
 }
 
 .newListingForm{
+  background-color: white;
   width:75%;
-  border: 1px solid black;
+  border: 3px solid blue;
   text-align: center;
   padding:25px;
+  margin-top: 10px;
 
 }
 
 .listAllTable{
+  background-color: white;
   width:75%;
-  border: 1px solid black;
+  border: 3px solid blue;
   text-align: center;
   padding:25px;
+  margin-top: 10px;
 
 }
 .navLink{

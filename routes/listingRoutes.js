@@ -74,8 +74,12 @@ router.route('/listings/get/:listing_id')
 	.get(function(req, res) {
 		Listing.findById(req.params.listing_id, function(err, listing) {
 			if (err)
+			{
 				res.send(err);
+			}
+			else{
 			res.json(listing);
+		}
 		});
 });
 
