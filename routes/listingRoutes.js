@@ -13,6 +13,10 @@ router.route('/listings')
 		listing.isbn = req.body.isbn;
 		listing.cost = req.body.cost;
 		listing.stat = req.body.stat;
+		listing.class_name = req.body.class_name;
+		listing.major = req.body.major;
+		listing.condition = req.body.condition;
+		listing.notes = req.body.notes;
 
 		listing.save(function(err) {
 			if (err) 
@@ -46,8 +50,21 @@ router.route('/listings/update')
 			}
 			if (req.body.stat) {
 				listing.stat = req.body.stat;
+			} 
+			if (req.body.class_name) {
+				listing.class_name = req.body.class_name;
+			}
+			if (req.body.major) {
+				listing.major = req.body.major;
+			}
+			if (req.body.condition) {
+				listing.condition = req.body.condition;
+			} 
+			if (req.body.notes) {
+				listing.notes = req.body.notes;
 			}
 			
+
 			listing.save(function(err) {
 				if (err)
 					res.send(err);
