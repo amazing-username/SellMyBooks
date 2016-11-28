@@ -17,14 +17,24 @@ router.route('/listings')
 		listing.major = req.body.major;
 		listing.condition = req.body.condition;
 		listing.notes = req.body.notes;
+		listing.seller = req.body.seller;
+		
+		if (req.body.title && req.body.author && req.body.cost && req.body.stat && req.body.seller) {
 
-		listing.save(function(err) {
-			if (err) 
-				res.send(err);
+			listing.save(function(err) {
+				if (err) 
+					res.send(err);
 		 
-			res.json({message: 'Created Listing'});
+				res.json({message: 'Created Listing'});
 	
-		});
+			});
+
+		} else {
+			
+			res.json({message: 'Error 1 : Missing Required Fields'});
+
+		}	
+
 });
 
 router.route('/listings/update')
