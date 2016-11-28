@@ -35,6 +35,22 @@ bookRouter.config(function($stateProvider, $urlRouterProvider) {
       controller: 'EditCtrl'
     })
 
+    .state('register', {
+      url: '/register',
+      templateUrl: 'register.html',
+      controller: 'RegisterCtrl'
+    })
+    .state('login', {
+      url: '/login',
+      templateUrl: 'login.html',
+      controller: 'LoginCtrl'
+    })
+    .state('logout', {
+      url: '/logout',
+      templateUrl: 'logout.html',
+      controller: 'LogoutCtrl'
+    })
+
     .state('test', {
       url: '/test',
       templateUrl: 'partial-test.html'
@@ -43,19 +59,100 @@ bookRouter.config(function($stateProvider, $urlRouterProvider) {
 
 
 
-bookRouter.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
+
+bookRouter.controller('MainCtrl', ['$scope', '$http', 'AuthFac', function($scope, $http, AuthFac){
 
 
   console.log("Hello World from  main controller");
 
 
 
+
+
   }
 ]);
 
-bookRouter.controller('HomeCtrl', ['$scope', '$http', function($scope, $http){
+
+bookRouter.controller('LoginCtrl', ['$scope', '$http', '$state', 'AuthFac', function($scope, $http, $state, AuthFac){
+
+
+  console.log("Hello World from  login controller");
+  $scope.user= {};
+  $scope.loginUser = function()
+  {
+    console.log('register function');
+    console.log($scope.user.username);
+    console.log($scope.user.password);
+
+    $http.post('/users/login', {
+      username: $scope.user.username,
+      password: $scope.user.password
+    }).success(function(data)
+    {
+        console.log("success, goin' home!");
+
+        AuthFac.saveToken(data.token);
+        $state.transitionTo('home');
+    }).error(function(data)
+    {
+        alert("You did something wrong.");
+    })
+
+  };
+
+
+  }
+]);
+bookRouter.controller('LogoutCtrl', ['$scope', '$http', '$state', '$window', 'AuthFac', function($scope, $http, $state, $window, AuthFac){
+
+
+  console.log("Hello World from  logout controller");
+  $window.localStorage.removeItem('sellbookstoken');
+  alert("Logged Out!");
+  $state.transitionTo('home');
+
+}]);
+bookRouter.controller('RegisterCtrl', ['$scope', '$http', '$state', function($scope, $http, $state){
+
+
+  console.log("Hello World from  register controller");
+  $scope.user= {};
+  $scope.addUser = function()
+  {
+    console.log('register function');
+    console.log($scope.user.username);
+    console.log($scope.user.password);
+
+    $http.post('/users/register', {
+      username: $scope.user.username,
+      password: $scope.user.password
+    }).success(function(data)
+    {
+        console.log("success, goin' home!");
+        $state.transitionTo('home');
+    }).error(function(data)
+    {
+        alert("You did something wrong.");
+    })
+
+  };
+
+}]);
+
+bookRouter.controller('HomeCtrl', ['$scope', '$http', 'AuthFac', function($scope, $http, AuthFac){
 
   $scope.searchTerm="";
+  $scope.getUser = function(){
+    if(AuthFac.isLoggedIn() )
+    {
+      return AuthFac.currentUser();
+    }
+    else {
+      {
+        return "You're Not Logged In";
+      }
+    }
+  };
   console.log("Hello World from  home controller");
 
   $scope.searchBasic = function(){
@@ -63,6 +160,15 @@ bookRouter.controller('HomeCtrl', ['$scope', '$http', function($scope, $http){
       alert("Placeholder: I would try to search for " + $scope.searchTerm + " if I had a route");
       $scope.searchTerm="";
   };
+
+  $scope.clearSearch = function(){
+    $scope.searchTerm="";
+
+  };
+
+
+
+
 }]);
 
 bookRouter.controller('ListCtrl', ['$scope', '$http', function($scope, $http){
@@ -170,3 +276,38 @@ bookRouter.controller('NewListCtrl', ['$scope', '$http', '$state', function($sco
     };
   }
 ]);
+
+
+bookRouter.factory('AuthFac', function ($http, $window){
+
+    var AuthFac = {};
+    AuthFac.saveToken = function (token){
+      $window.localStorage['sellbookstoken'] = token;
+    };
+    AuthFac.getToken = function(){
+      return $window.localStorage['sellbookstoken'];
+    };
+    AuthFac.isLoggedIn = function(){
+      var token = AuthFac.getToken();
+      if(token){
+        var payload = JSON.parse($window.atob(token.split('.')[1]));
+        return payload.exp > Date.now() / 1000;
+      } else {
+        return false;
+      }
+    };
+    AuthFac.currentUser = function(){
+      if(AuthFac.isLoggedIn()){
+        var token = AuthFac.getToken();
+        var payload = JSON.parse($window.atob(token.split('.')[1]));
+        return payload.username;
+      }
+    };
+    AuthFac.register = function(user){
+      return $http.post('/users/register', user).success(function(data){
+        AuthFac.saveToken(data.token);
+      });
+    };
+    return AuthFac;
+
+});
