@@ -4,14 +4,19 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+
 var mongoose = require('mongoose');
 
+
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var users = require('./routes/userRoutes');
 var create_user = require('./routes/create_user');
 var listings = require('./routes/listingRoutes');
 
+
 mongoose.connect('mongodb://localhost:27017/SellMyBooks');
+
 
 var app = express();
 
@@ -46,6 +51,7 @@ app.use(function (req, res, next) {
 	// Pass to next layer of middleware
 	next();
  });
+app.use(passport.initialize());
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

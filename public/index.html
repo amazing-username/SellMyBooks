@@ -14,9 +14,9 @@
 
 	<body >
 		<div class="container" ng-controller="MainCtrl">
-			<div class="flexwrapper">
-				<a ui-sref=".home" class="navLink">Home</a>
-				<a ui-sref=".newlisting" class="navLink">New Listing</a>
+			<div class="navflexwrapper">
+				<a ui-sref=".home" class="navLink" >Home</a>
+				<a ui-sref=".newlisting" class="navLink" ng-show="!AuthFac.isLoggedIn()">New Listing</a>
 				<a ui-sref=".listall" class="navLink">Show All Listings</a>
 			</div>
 

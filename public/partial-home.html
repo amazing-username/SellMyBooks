@@ -1,9 +1,10 @@
 <div class="flexwrapper">
   <h1 class="hometitle">Sell My Books Home</h1>
   <form ng-submit="searchBasic()" class="homeSearchBar">
-  <input type="text" name="title" ng-model="searchTerm" size="100px">
-  <button type="submit">Search</button>
+  <input type="text" id="search" ng-model="searchTerm" class="searchBar" ng-blur="clearSearch()">
+  <button type="submit" class="searchButton">Search</button>
   </form>
+  <div>Hello, {{ getUser() }}</div>
 
 
 
