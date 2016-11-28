@@ -24,6 +24,9 @@ var ListingSchema = new Schema({
 	},
 	notes : {
 		type : String
+	},
+	seller : {
+		type : String
 	}
 });
 
