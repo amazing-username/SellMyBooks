@@ -1,3 +1,4 @@
+<h1>Hello User</h1>
 <div class="flexwrapper">
   <table class="listAllTable">
     <thead>
@@ -13,7 +14,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="books in booklist">
+      <tr ng-repeat="books in usersListings">
+
         <td><a ui-sref="showlisting({listingId:books._id})">View</a></td>
 
         <td>{{books.title}}</td>
@@ -22,6 +24,7 @@
         <td>{{books.cost}}</td>
         <td>{{books.stat}}</td>
         <td>{{books.data_created}}</td>
+
       </tr>
     </tbody>
   </table>

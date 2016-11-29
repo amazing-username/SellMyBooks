@@ -1,0 +1,38 @@
+<div class="flexwrapper">
+  <form ng-submit="searchListing()" class="searchForm">
+    <p>Title: <input type="text" name="title" ng-model="listing.title"> </p>
+    <p>Author: <input type="text" name="author" ng-model="listing.author"> </p>
+    <p>ISBN: <input type="text" name="isbn" ng-model="listing.isbn"> </p>
+    <p>Cost: <input type="number" name="cost" ng-model="listing.cost"> </p>
+  <button type="submit">Post</button>
+  </form>
+</div>
+<div ng-repeat="things in searchTerms">{{things}}</div>
+<div class="flexwrapper">
+  <table class="listAllTable">
+    <thead>
+      <tr>
+        <th>Link</th>
+        <th>Seller</th>
+        <th>stat</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>ISBN</th>
+        <th>Cost</th>
+        <th>Listed On</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="books in searchResults">
+        <td><a ui-sref="showlisting({listingId:books._id})">View</a></td>
+        <td>{{books.seller}}</td>
+        <td>{{books.stat}}</td>
+        <td>{{books.title}}</td>
+        <td>{{books.author}}</td>
+        <td>{{books.isbn}}</td>
+        <td>{{books.cost}}</td>
+        <td>{{books.data_created}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

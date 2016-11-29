@@ -1,6 +1,7 @@
 <table>
   <thead>
     <tr>
+      <th>Link</th>
       <th>Title</th>
       <th>Author</th>
       <th>ISBN</th>
@@ -11,6 +12,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="books in booklist">
+      <td><form ng-submit="goToListing(books.id)"><button type="submit">View</button></form></td>
       <td>{{books.title}}</td>
       <td>{{books.author}}</td>
       <td>{{books.isbn}}</td>
