@@ -1,9 +1,11 @@
 <h1>Login User</h1>
 <div class="flexwrapper">
-  <form ng-submit="loginUser()" class="newUserForm">
-    <p>Username: <input type="text" name="title" ng-model="user.username"> </p>
-    <p>Password: <input type="text" name="author" ng-model="user.password"> </p>
+  <div class="loginStyle">
+  <form ng-submit="loginUser()">
+    <div class="loginField">Username: <input type="text"  name="title" ng-model="user.username"></div>
+    <div class="loginField">Password: <input type="text" name="author" ng-model="user.password"></div>
 
   <button type="submit">Post</button>
   </form>
+</div>
 </div>

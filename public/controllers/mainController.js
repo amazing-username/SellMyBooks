@@ -12,6 +12,18 @@ bookRouter.config(function($stateProvider, $urlRouterProvider) {
       controller: 'HomeCtrl'
     })
 
+    .state('search', {
+      url: '/search',
+      templateUrl: 'search.html',
+      controller: 'SearchCtrl'
+    })
+
+    .state('userhome', {
+      url: '/uhome',
+      templateUrl: 'userhome.html',
+      controller: 'UserHomeCtrl'
+    })
+
     .state('newlisting', {
       url: '/newlisting',
       templateUrl: 'partial-newlisting.html',
@@ -33,6 +45,12 @@ bookRouter.config(function($stateProvider, $urlRouterProvider) {
       url: '/edit/:listingId',
       templateUrl: 'editlisting.html',
       controller: 'EditCtrl'
+    })
+
+    .state('showlisting', {
+      url: '/show/{listingId}',
+      templateUrl: 'showlisting.html',
+      controller: 'ShowCtrl'
     })
 
     .state('register', {
@@ -64,6 +82,25 @@ bookRouter.controller('MainCtrl', ['$scope', '$http', 'AuthFac', function($scope
 
 
   console.log("Hello World from  main controller");
+  $scope.getLoginStatus = function() {
+    if(AuthFac.isLoggedIn() ){
+      return true;
+    }
+    else {
+      return false;
+    }
+  };
+  $scope.getUser = function(){
+    if(AuthFac.isLoggedIn() )
+    {
+      return AuthFac.currentUser();
+    }
+    else {
+      {
+        return "You're Not Logged In";
+      }
+    }
+  };
 
 
 
@@ -73,36 +110,57 @@ bookRouter.controller('MainCtrl', ['$scope', '$http', 'AuthFac', function($scope
 ]);
 
 
-bookRouter.controller('LoginCtrl', ['$scope', '$http', '$state', 'AuthFac', function($scope, $http, $state, AuthFac){
+bookRouter.controller('UserHomeCtrl', ['$scope', '$http', '$state', 'AuthFac', function($scope, $http, $state, AuthFac){
 
 
   console.log("Hello World from  login controller");
   $scope.user= {};
-  $scope.loginUser = function()
-  {
-    console.log('register function');
-    console.log($scope.user.username);
-    console.log($scope.user.password);
+  $http.post('/api/listings/get/foruser', {
+        seller: AuthFac.currentUser()
+      }).
+      success(function(data)
+      {
+        $scope.usersListings = data;
+        console.log(data);
+        console.log("got data back from search.");
 
-    $http.post('/users/login', {
-      username: $scope.user.username,
-      password: $scope.user.password
-    }).success(function(data)
-    {
-        console.log("success, goin' home!");
+      }).error(function(data)
+      {
 
-        AuthFac.saveToken(data.token);
-        $state.transitionTo('home');
-    }).error(function(data)
-    {
-        alert("You did something wrong.");
-    })
+        alert("You messed something up.");
+        console.log("error, WHAT DID YOU DO");
 
-  };
+      })
+
+    }]);
 
 
-  }
-]);
+bookRouter.controller('LoginCtrl', ['$scope', '$http', '$state', 'AuthFac', function($scope, $http, $state, AuthFac){
+  console.log("Hello World from  login controller");
+ $scope.user= {};
+ $scope.loginUser = function()
+ {
+   console.log('register function');
+   console.log($scope.user.username);
+   console.log($scope.user.password);
+
+   $http.post('/users/login', {
+     username: $scope.user.username,
+     password: $scope.user.password
+   }).success(function(data)
+   {
+       console.log("success, goin' home!");
+
+       AuthFac.saveToken(data.token);
+       $state.transitionTo('home');
+   }).error(function(data)
+   {
+       alert("You did something wrong.");
+   })
+
+ };
+}]);
+
 bookRouter.controller('LogoutCtrl', ['$scope', '$http', '$state', '$window', 'AuthFac', function($scope, $http, $state, $window, AuthFac){
 
 
@@ -112,6 +170,7 @@ bookRouter.controller('LogoutCtrl', ['$scope', '$http', '$state', '$window', 'Au
   $state.transitionTo('home');
 
 }]);
+
 bookRouter.controller('RegisterCtrl', ['$scope', '$http', '$state', function($scope, $http, $state){
 
 
@@ -139,7 +198,67 @@ bookRouter.controller('RegisterCtrl', ['$scope', '$http', '$state', function($sc
 
 }]);
 
-bookRouter.controller('HomeCtrl', ['$scope', '$http', 'AuthFac', function($scope, $http, AuthFac){
+bookRouter.controller('SearchCtrl', ['$scope', '$http', '$state', 'AuthFac', function($scope, $http, $state, AuthFac){
+
+
+  console.log("Hello World from  searcg controller");
+  $scope.listing= {};
+  $scope.searchResults = {};
+  $scope.searchListing = function()
+  {
+
+    $scope.searchTerms = {};
+
+    if($scope.listing.title)
+    {
+      $scope.searchTerms.title = $scope.listing.title;
+    }
+    if($scope.listing.author)
+    {
+      $scope.searchTerms.author = $scope.listing.author;
+    }
+    if($scope.listing.isbn)
+    {
+      $scope.searchTerms.isbn = $scope.listing.isbn;
+    }
+    if($scope.listing.cost)
+    {
+      $scope.searchTerms.cost = $scope.listing.cost;
+    }
+    if(AuthFac.isLoggedIn())
+    {
+      $scope.searchTerms.seller = AuthFac.currentUser();
+    }
+    alert($scope.searchTerms.seller);
+    $http.post('/api/listings/get/search', {
+          title: $scope.searchTerms.title,
+          author: $scope.searchTerms.author,
+          isbn: $scope.searchTerms.isbn,
+          cost: $scope.searchTerms.cost,
+          seller: $scope.searchTerms.seller,
+          stat: "forSale"
+        }).
+        success(function(data)
+        {
+          $scope.searchResults = data;
+          console.log(data);
+          console.log("got data back from search.");
+
+        }).error(function(data)
+        {
+
+          alert("You messed something up.");
+          console.log("error, WHAT DID YOU DO");
+
+        })
+
+      };
+
+}]);
+
+bookRouter.controller('HomeCtrl', ['$scope', '$http', '$state', 'AuthFac', function($scope, $http, $state, AuthFac){
+
+
 
   $scope.searchTerm="";
   $scope.getUser = function(){
@@ -171,16 +290,20 @@ bookRouter.controller('HomeCtrl', ['$scope', '$http', 'AuthFac', function($scope
 
 }]);
 
-bookRouter.controller('ListCtrl', ['$scope', '$http', function($scope, $http){
+bookRouter.controller('ListCtrl', ['$scope', '$http', '$location', '$stateParams', function($scope, $http, $location, $stateParams){
 
 
   console.log("Hello World from list controller");
+
+  //console.log($scope.showListing.author);
 
   $http.get('http://localhost:3000/api/listings/get').success(function(response)
   {
     console.log("list controller - I got the data");
     $scope.booklist = response;
   })
+
+
 
 
 
@@ -237,7 +360,38 @@ bookRouter.controller('EditCtrl', ['$scope', '$http', '$stateParams', '$state', 
   }
 }]);
 
-bookRouter.controller('NewListCtrl', ['$scope', '$http', '$state', function($scope, $http, $state){
+bookRouter.controller('ShowCtrl', ['$scope', '$http', '$stateParams', '$state', function($scope, $http, $stateParams, $state)
+{
+  $scope.listing="";
+  if($stateParams.listingId !== "")
+  {
+    $scope.listId = $stateParams.listingId;
+    $scope.route = "/api/listings/get/" + $scope.listId;
+
+    $http.get($scope.route).success(function(response)
+      {
+        if(response)
+        {
+          $scope.showlisting = response;
+          console.log("got dat data, filling in the edit form.");
+        }
+        else
+        {
+          alert("Your current route is invalid. The id you gave had no results. I'm going to route you back home.");
+          $state.transitionTo('home');
+        }
+      })
+
+
+  }
+  else
+  {
+    alert("Your current route is invalid. You need to include the listing id after the end slash. I'm going to route you back home.");
+    $state.transitionTo('home');
+  }
+}]);
+
+bookRouter.controller('NewListCtrl', ['$scope', '$http', '$state', 'AuthFac', function($scope, $http, $state, AuthFac){
 
   $scope.listing = {};
 
@@ -253,13 +407,15 @@ bookRouter.controller('NewListCtrl', ['$scope', '$http', '$state', function($sco
         author: $scope.listing.author,
         isbn: $scope.listing.isbn,
         cost: $scope.listing.cost,
-        stat: "forSale"
+        stat: "forSale",
+        seller: AuthFac.currentUser()
 
       }).
       success(function(data)
       {
 
         console.log("put that listing in that database so hard. goin' home.");
+        console.log(AuthFac.currentUser());
         $state.transitionTo('home');
 
       }).error(function(data)

@@ -36,6 +36,22 @@ router.route('/listings')
 
 		//}	
 
+		if (req.body.title && req.body.author && req.body.cost && req.body.stat && req.body.seller) {
+
+			listing.save(function(err) {
+				if (err)
+					res.send(err);
+
+				res.json({message: 'Created Listing'});
+
+			});
+
+		} else {
+
+			res.json({message: 'Error 1 : Missing Required Fields'});
+
+		}
+
 });
 
 router.route('/listings/update')
@@ -82,6 +98,68 @@ router.route('/listings/update')
 				res.json({ message: "Listing Updated"});
 			});
 		});
+});
+router.route('/listings/get/foruser')
+
+.post(function(req, res) {
+	var query = {}
+	if (req.body.seller) {
+		query.seller = req.body.seller;
+	}
+
+	Listing.find(query, function (err, listings) {
+		if (err)
+		{
+			res.send(err);
+		}
+		res.json(listings);
+	});
+	});
+
+
+
+router.route('/listings/get')
+
+	.get(function(req, res) {
+		Listing.find(function(err, listings) {
+			if (err)
+				res.send(err);
+
+			res.json(listings);
+		});
+});
+router.route('/listings/get/search')
+
+	.post(function(req, res) {
+		var query = {}
+		if (req.body.title) {
+			query.title = req.body.title;
+		}
+		if (req.body.author) {
+			query.author = req.body.author;
+		}
+		if (req.body.isbn) {
+			query.isbn = req.body.isbn;
+		}
+		if (req.body.cost) {
+			query.cost = req.body.cost;
+		}
+
+		if (req.body.seller){
+			
+			query.seller = {"$ne" : req.body.seller};
+		}
+		if (req.body.stat){
+			query.stat = {"$ne" : "sold"};
+		}
+		Listing.find(query, function (err, listings) {
+			if (err)
+			{
+				res.send(err);
+			}
+			res.json(listings);
+		});
+
 });
 
 router.route('/listings/get')
