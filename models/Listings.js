@@ -5,10 +5,9 @@ var ListingSchema = new Schema({
 	title : String,
 	author : String,
 	isbn : String,
-	cost : {
-		type: Number
-	},
+	cost : {type: Number},
 	stat : String,
+buyers: String,
 	data_created : {
 		type: Date,
 		default: Date.now

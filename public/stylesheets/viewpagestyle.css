@@ -1,0 +1,114 @@
+.viewWrapper
+{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width:80%;
+margin:auto;
+
+
+}
+
+.resultsTable
+{
+  background-color: white;
+  border: 3px solid blue;
+  text-align: center;
+  padding-left:10px;
+  padding-right:10px;
+  width:100%;
+}
+a{
+  text-decoration: none;
+  color:white;
+}
+
+
+.eachListing{
+  display:flex;
+  align-items: center;
+  width:100%;
+  flex-flow: row wrap;
+  background-color: #66b3ff;
+  color: white;
+  box-sizing: border-box;
+  border-radius: 5px;
+  text-shadow: 3px 3px 3px #4da6ff;
+  padding-top:15px;
+  margin-bottom:20px;
+  border: 2px solid #003366;
+}
+.eachAttribute{
+  display:flex;
+  flex:100% ;
+  background-color: white;
+  color: black;
+  text-shadow: none;
+  font-size:14px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  padding-bottom: 20px;
+}
+.eachAttributeTitle{
+  align-items: center;
+  justify-content: center;
+  display:flex;
+  width:100%;
+  text-align: center;
+  font-size: 26px;
+  padding-bottom: 10px;
+
+}
+.eachAttributeSellerCost{
+  align-items: center;
+  justify-content: center;
+  display:flex;
+  width:100%;
+  text-align: center;
+  font-size: 18px;
+  padding-bottom: 15px;
+}
+.eachAttribute{
+  display:flex;
+  flex:100% ;
+  background-color: white;
+  color: black;
+  text-shadow: none;
+  font-size:14px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  padding-bottom: 25px;
+}
+.eachAttributeBuy{
+  display:flex;
+  flex:100% ;
+  text-shadow: none;
+  font-size:14px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  background-color: #66b3ff;
+  color: white;
+  box-sizing: border-box;
+  border-radius: 5px;
+  text-shadow: 3px 3px 3px #4da6ff;
+
+  padding-bottom: 50px;
+  padding-top: 50px;
+
+  border: 2px solid #003366;
+
+}
+a{
+  font-size: 22px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  width:100%;
+}

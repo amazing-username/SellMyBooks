@@ -22,7 +22,8 @@ router.route('/listings')
 		listing.buyer._id = "";
 		listing.buyer.offer = 0;
 		
-	//	if (req.body.title && req.body.author && req.body.cost && req.body.stat && req.body.seller) {
+		listing.buyers = req.body.buyers
+		//if (req.body.title && req.body.author && req.body.cost && req.body.stat && req.body.seller) {
 
 			listing.save(function(err) {
 				if (err) 
@@ -71,7 +72,8 @@ router.route('/listings/update')
 
 	.post(function(req, res) {
 
-		Listing.findById(req.body.listing_id, function(err, listing) {
+		listing = Listing.findById(req.body.listing_id, function(err, listing) {
+
 
 			if (err)
 				res.send(err);
@@ -102,6 +104,10 @@ router.route('/listings/update')
 			} 
 			if (req.body.notes) {
 				listing.notes = req.body.notes;
+			}
+
+			if(req.body.buyers) {
+				listing.buyers = req.body.buyers;
 			}
 
 			listing.save(function(err) {
@@ -177,27 +183,38 @@ router.route('/listings/get')
 router.route('/listings/get/search')
 
 	.post(function(req, res) {
+
 		var query = {}
 		if (req.body.title) {
-			query.title = req.body.title;
+			query.title = (new RegExp(req.body.title, "i"));
+			console.log("title: " + query.title);
 		}
 		if (req.body.author) {
-			query.author = req.body.author;
+			query.author = (new RegExp(req.body.author, "i"));
+			console.log("author: " + query.author);
+
 		}
 		if (req.body.isbn) {
-			query.isbn = req.body.isbn;
+			query.isbn = (new RegExp(req.body.isbn, "i"));
+			console.log("isbn: " + query.isbn);
+
 		}
 		if (req.body.cost) {
-			query.cost = req.body.cost;
+			if (req.body.cost>0)
+			{
+				query.cost = {"$lte" : req.body.cost};
+				console.log("cost: " + query.cost);
+			}
 		}
 
 		if (req.body.seller){
-			
+
 			query.seller = {"$ne" : req.body.seller};
 		}
 		if (req.body.stat){
 			query.stat = {"$ne" : "sold"};
 		}
+
 		Listing.find(query, function (err, listings) {
 			if (err)
 			{

@@ -1,0 +1,128 @@
+.searchPageWrapper
+{
+  display:flex;
+  justify-content: center;
+  align-items: flex-start;
+
+}
+.searchPageLeft
+{
+  display:flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  text-align: right;
+  flex-wrap: wrap;
+  width:20%;
+  margin-left: 10px;
+
+}
+.searchPageRight
+{
+  display:flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width:80%;
+  margin-right: 10px;
+  margin-left:25px;
+
+
+}
+
+.resultsTable
+{
+  background-color: white;
+  border: 3px solid blue;
+  text-align: center;
+  padding-left:10px;
+  padding-right:10px;
+  width:100%;
+}
+a{
+  text-decoration: none;
+  color:white;
+}
+.detailOptions{
+  background-color: #66b3ff;
+  color: white;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width:100%;
+  text-shadow: 3px 3px 3px #4da6ff;
+  padding:10px;
+  align-items: flex-end;
+  text-align: right;
+  border: 2px solid #003366;
+
+}
+.detailItem{
+  width:100%;
+  display:flex;
+  text-align: right;
+  margin-bottom:5px;
+}
+.noListing{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 25px;
+    padding:25px;
+    width:100%;
+    flex-flow: row wrap;
+    background-color: #66b3ff;
+    color: white;
+    box-sizing: border-box;
+    border-radius: 5px;
+    text-shadow: 3px 3px 3px #4da6ff;
+    padding-top:10px;
+    margin-bottom:5px;
+    border: 2px solid #003366;
+
+}
+.eachListing{
+  display:flex;
+  align-items: center;
+  width:100%;
+  flex-flow: row wrap;
+  background-color: #66b3ff;
+  color: white;
+  box-sizing: border-box;
+  border-radius: 5px;
+  text-shadow: 3px 3px 3px #4da6ff;
+  padding-top:10px;
+  margin-bottom:15px;
+  border: 2px solid #003366;
+
+  ng-disabled={{isPending()}};
+}
+.eachAttribute{
+  display:flex;
+  flex:100% ;
+  background-color: white;
+  color: black;
+  text-shadow: none;
+  font-size:12px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.eachAttributeTitle{
+  align-items: center;
+  justify-content: center;
+  display:flex;
+  width:100%;
+  text-align: center;
+  font-size: 22px;
+  padding-bottom: 5px;
+
+}
+.eachAttributeSellerCost{
+  align-items: center;
+  justify-content: center;
+  display:flex;
+  width:100%;
+  text-align: center;
+  font-size: 14px;
+  padding-bottom: 10px;
+}
