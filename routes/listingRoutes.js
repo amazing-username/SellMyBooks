@@ -106,19 +106,28 @@ router.route('/listings/get/search')
 		var query = {}
 		if (req.body.title) {
 			query.title = req.body.title;
+			console.log("title: " + query.title);
 		}
 		if (req.body.author) {
 			query.author = req.body.author;
+			console.log("author: " + query.author);
+
 		}
 		if (req.body.isbn) {
 			query.isbn = req.body.isbn;
+			console.log("isbn: " + query.isbn);
+
 		}
 		if (req.body.cost) {
-			query.cost = req.body.cost;
+			if (req.body.cost>0)
+			{
+				query.cost = {"$lte" : req.body.cost};
+				console.log("cost: " + query.cost);
+			}
 		}
 
 		if (req.body.seller){
-			
+
 			query.seller = {"$ne" : req.body.seller};
 		}
 		if (req.body.stat){

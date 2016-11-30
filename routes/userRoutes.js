@@ -19,7 +19,11 @@ router.route('/listings/get')
 		});
 });
 */
-
+router.route('/logout')
+  .get(function(req, res) {
+    req.logout();
+    res.redirect('/');
+  })
 router.route('/view', passport.authenticate('local'))
   .get(function(req,res) {
     res.json({ message : 'user page'});

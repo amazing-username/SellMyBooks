@@ -1,38 +1,29 @@
-<div class="flexwrapper">
-  <form ng-submit="searchListing()" class="searchForm">
-    <p>Title: <input type="text" name="title" ng-model="listing.title"> </p>
-    <p>Author: <input type="text" name="author" ng-model="listing.author"> </p>
-    <p>ISBN: <input type="text" name="isbn" ng-model="listing.isbn"> </p>
-    <p>Cost: <input type="number" name="cost" ng-model="listing.cost"> </p>
-  <button type="submit">Post</button>
+<link rel="stylesheet" href="stylesheets/searchPageStyle.css" type="text/css">
+
+<div class="searchPageWrapper">
+<div class="searchPageLeft">
+  <form class="detailOptions">
+    <div class="detailItem"> Title:</div> <input class="detailItem" ng-change="searchListing()" type="text" name="title" ng-model="listing.title">
+    <div class="detailItem">Author: </div><input class="detailItem" ng-change="searchListing()" type="text" name="author" ng-model="listing.author">
+    <div class="detailItem">ISBN: </div><input class="detailItem" ng-change="searchListing()" type="text" name="isbn" ng-model="listing.isbn">
+    <div class="detailItem">Cost: </div><input class="detailItem" min="1" max="1000" ng-change="searchListing()" type="number" name="cost" ng-model="listing.cost">
   </form>
 </div>
-<div ng-repeat="things in searchTerms">{{things}}</div>
-<div class="flexwrapper">
-  <table class="listAllTable">
-    <thead>
-      <tr>
-        <th>Link</th>
-        <th>Seller</th>
-        <th>stat</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>ISBN</th>
-        <th>Cost</th>
-        <th>Listed On</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="books in searchResults">
-        <td><a ui-sref="showlisting({listingId:books._id})">View</a></td>
-        <td>{{books.seller}}</td>
-        <td>{{books.stat}}</td>
-        <td>{{books.title}}</td>
-        <td>{{books.author}}</td>
-        <td>{{books.isbn}}</td>
-        <td>{{books.cost}}</td>
-        <td>{{books.data_created}}</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="searchPageRight">
+
+    <div class="noListing" ng-show="noResultsCheck()">
+      No search results for the current criteria.
+    </div>
+    <div class="eachListing" ng-show="!noResultsCheck()" ng-repeat="books in searchResults">
+      <div class="eachAttributeTitle"><a ui-sref="showlisting({listingId:books._id})">
+        {{books.title}} - {{books.author}}</a></div>
+
+      <div class="eachAttributeSellerCost"><a ui-sref="showlisting({listingId:books._id})">
+        ${{books.cost}} - Listed By {{books.seller}}</a></div>
+        
+      <div class="eachAttribute"><b>Details:</b></div>
+      <div class="eachAttribute"><b>ISBN:</b>{{books.isbn}}</div>
+      <div class="eachAttribute"><b>Date Listed:</b>{{books.data_created}}</div>
+    </div>
+
 </div>

@@ -13,7 +13,7 @@ bookRouter.config(function($stateProvider, $urlRouterProvider) {
     })
 
     .state('search', {
-      url: '/search',
+      url: '/search/:title',
       templateUrl: 'search.html',
       controller: 'SearchCtrl'
     })
@@ -82,6 +82,7 @@ bookRouter.controller('MainCtrl', ['$scope', '$http', 'AuthFac', function($scope
 
 
   console.log("Hello World from  main controller");
+
   $scope.getLoginStatus = function() {
     if(AuthFac.isLoggedIn() ){
       return true;
@@ -115,6 +116,17 @@ bookRouter.controller('UserHomeCtrl', ['$scope', '$http', '$state', 'AuthFac', f
 
   console.log("Hello World from  login controller");
   $scope.user= {};
+  $scope.getUser = function(){
+    if(AuthFac.isLoggedIn() )
+    {
+      return AuthFac.currentUser();
+    }
+    else {
+      {
+        return "You're Not Logged In";
+      }
+    }
+  };
   $http.post('/api/listings/get/foruser', {
         seller: AuthFac.currentUser()
       }).
@@ -165,6 +177,10 @@ bookRouter.controller('LogoutCtrl', ['$scope', '$http', '$state', '$window', 'Au
 
 
   console.log("Hello World from  logout controller");
+  $http.get('http://localhost:3000/users/logout').success(function(response)
+  {
+    console.log("logged out");
+  })
   $window.localStorage.removeItem('sellbookstoken');
   alert("Logged Out!");
   $state.transitionTo('home');
@@ -198,12 +214,17 @@ bookRouter.controller('RegisterCtrl', ['$scope', '$http', '$state', function($sc
 
 }]);
 
-bookRouter.controller('SearchCtrl', ['$scope', '$http', '$state', 'AuthFac', function($scope, $http, $state, AuthFac){
+bookRouter.controller('SearchCtrl', ['$scope', '$http', '$state', '$stateParams', 'AuthFac', function($scope, $http, $state, $stateParams, AuthFac){
 
 
   console.log("Hello World from  searcg controller");
+  console.log($stateParams);
+  console.log("stateParamstitle= " + $stateParams.title);
+  $scope.searchTerms = {};
   $scope.listing= {};
   $scope.searchResults = {};
+  $scope.searchCriteria = {};
+  $scope.noResults = true;
   $scope.searchListing = function()
   {
 
@@ -211,15 +232,24 @@ bookRouter.controller('SearchCtrl', ['$scope', '$http', '$state', 'AuthFac', fun
 
     if($scope.listing.title)
     {
-      $scope.searchTerms.title = $scope.listing.title;
+      if($scope.listing.title !== "")
+      {
+        $scope.searchTerms.title = $scope.listing.title;
+      }
     }
     if($scope.listing.author)
     {
-      $scope.searchTerms.author = $scope.listing.author;
+      if($scope.listing.author !== "")
+      {
+        $scope.searchTerms.author = $scope.listing.author;
+      }
     }
     if($scope.listing.isbn)
     {
-      $scope.searchTerms.isbn = $scope.listing.isbn;
+      if($scope.listing.isbn !== "")
+      {
+        $scope.searchTerms.isbn = $scope.listing.isbn;
+      }
     }
     if($scope.listing.cost)
     {
@@ -229,7 +259,7 @@ bookRouter.controller('SearchCtrl', ['$scope', '$http', '$state', 'AuthFac', fun
     {
       $scope.searchTerms.seller = AuthFac.currentUser();
     }
-    alert($scope.searchTerms.seller);
+    //alert($scope.searchTerms.seller);
     $http.post('/api/listings/get/search', {
           title: $scope.searchTerms.title,
           author: $scope.searchTerms.author,
@@ -241,6 +271,12 @@ bookRouter.controller('SearchCtrl', ['$scope', '$http', '$state', 'AuthFac', fun
         success(function(data)
         {
           $scope.searchResults = data;
+          $scope.noResults = false;
+
+        try{  console.log($scope.searchResults[0].title); console.log("Got some results.");} 
+          catch (err){console.log(err.name + ': "' + err.message + " which means no results");
+          $scope.noResults = true;}
+
           console.log(data);
           console.log("got data back from search.");
 
@@ -253,14 +289,44 @@ bookRouter.controller('SearchCtrl', ['$scope', '$http', '$state', 'AuthFac', fun
         })
 
       };
+  if($stateParams.title != "")
+  {
+
+    $scope.listing.title=$stateParams.title;
+    $scope.searchListing();
+  }
+
+  $scope.noResultsCheck = function(){
+    if ($scope.noResults == true)
+    {
+      console.log(" noResults var is set to true");
+      return true;
+    }
+    else{
+      console.log(" noResults var is set to false");
+
+      return false;
+    }
+  };
+  $scope.noResultsCheck();
+
 
 }]);
 
-bookRouter.controller('HomeCtrl', ['$scope', '$http', '$state', 'AuthFac', function($scope, $http, $state, AuthFac){
+bookRouter.controller('HomeCtrl', ['$scope', '$http', '$state', '$stateParams', 'AuthFac',  function($scope, $http, $state, $stateParams, AuthFac){
 
 
 
-  $scope.searchTerm="";
+  $scope.searchTerm={};
+  $scope.emptySearch = function() {
+    if ($scope.searchTerm.title="")
+    {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
   $scope.getUser = function(){
     if(AuthFac.isLoggedIn() )
     {
@@ -274,10 +340,14 @@ bookRouter.controller('HomeCtrl', ['$scope', '$http', '$state', 'AuthFac', funct
   };
   console.log("Hello World from  home controller");
 
-  $scope.searchBasic = function(){
 
-      alert("Placeholder: I would try to search for " + $scope.searchTerm + " if I had a route");
-      $scope.searchTerm="";
+
+  $scope.searchBasic = function(){
+      console.log($stateParams.searchTerm.title);
+      console.log($stateParams.searchTerm);
+
+      //alert("Placeholder: I would try to search for " + $scope.searchTerm.title + " if I had a route");
+      $state.go("search", {title: $scope.searchTerm.title});
   };
 
   $scope.clearSearch = function(){
