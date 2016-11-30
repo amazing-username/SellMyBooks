@@ -220,11 +220,15 @@ bookRouter.controller('SearchCtrl', ['$scope', '$http', '$state', '$stateParams'
   console.log("Hello World from  searcg controller");
   console.log($stateParams);
   console.log("stateParamstitle= " + $stateParams.title);
+
+
   $scope.searchTerms = {};
   $scope.listing= {};
   $scope.searchResults = {};
   $scope.searchCriteria = {};
   $scope.noResults = true;
+
+
   $scope.searchListing = function()
   {
 
@@ -235,6 +239,9 @@ bookRouter.controller('SearchCtrl', ['$scope', '$http', '$state', '$stateParams'
       if($scope.listing.title !== "")
       {
         $scope.searchTerms.title = $scope.listing.title;
+      }
+      else{
+        $scope.listing.title={};
       }
     }
     if($scope.listing.author)
@@ -253,7 +260,13 @@ bookRouter.controller('SearchCtrl', ['$scope', '$http', '$state', '$stateParams'
     }
     if($scope.listing.cost)
     {
+      if ($scope.listing.cost == 0 || $scope.listing.cost == "")
+      {
+        $scope.listing.cost=null;
+      }
+      else{
       $scope.searchTerms.cost = $scope.listing.cost;
+    }
     }
     if(AuthFac.isLoggedIn())
     {
@@ -266,14 +279,14 @@ bookRouter.controller('SearchCtrl', ['$scope', '$http', '$state', '$stateParams'
           isbn: $scope.searchTerms.isbn,
           cost: $scope.searchTerms.cost,
           seller: $scope.searchTerms.seller,
-          stat: "forSale"
+
         }).
         success(function(data)
         {
           $scope.searchResults = data;
           $scope.noResults = false;
 
-        try{  console.log($scope.searchResults[0].title); console.log("Got some results.");} 
+        try{  console.log($scope.searchResults[0].title); console.log("Got some results.");}
           catch (err){console.log(err.name + ': "' + err.message + " which means no results");
           $scope.noResults = true;}
 
@@ -295,7 +308,9 @@ bookRouter.controller('SearchCtrl', ['$scope', '$http', '$state', '$stateParams'
     $scope.listing.title=$stateParams.title;
     $scope.searchListing();
   }
-
+  else {
+    $scope.searchListing();
+  }
   $scope.noResultsCheck = function(){
     if ($scope.noResults == true)
     {
@@ -430,13 +445,23 @@ bookRouter.controller('EditCtrl', ['$scope', '$http', '$stateParams', '$state', 
   }
 }]);
 
-bookRouter.controller('ShowCtrl', ['$scope', '$http', '$stateParams', '$state', function($scope, $http, $stateParams, $state)
+bookRouter.controller('ShowCtrl', ['$scope', '$http', '$stateParams', '$state', 'AuthFac', function($scope, $http, $stateParams, $state, AuthFac)
 {
+  $scope.pending=false;
   $scope.listing="";
   if($stateParams.listingId !== "")
   {
     $scope.listId = $stateParams.listingId;
     $scope.route = "/api/listings/get/" + $scope.listId;
+
+    $scope.isLoggedIn=function(){
+      if (AuthFac.isLoggedIn() == true) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
 
     $http.get($scope.route).success(function(response)
       {
@@ -444,6 +469,10 @@ bookRouter.controller('ShowCtrl', ['$scope', '$http', '$stateParams', '$state', 
         {
           $scope.showlisting = response;
           console.log("got dat data, filling in the edit form.");
+          if ($scope.showlisting.stat == "pending")
+          {
+            $scope.pending = true;
+          }
         }
         else
         {
@@ -459,13 +488,53 @@ bookRouter.controller('ShowCtrl', ['$scope', '$http', '$stateParams', '$state', 
     alert("Your current route is invalid. You need to include the listing id after the end slash. I'm going to route you back home.");
     $state.transitionTo('home');
   }
-}]);
+
+  $scope.placeBuy = function(listingId)
+  {
+    var list = listingId;
+    console.log("listingid   " + listingId);
+    console.log("route: /api/listings/get/"+listingId);
+    $scope.route = "/api/listings/get/"+listingId;
+
+    $http.get($scope.route).success(function(response)
+      {
+        if(response)
+        {
+          $scope.listing = response;
+          var buyer = AuthFac.currentUser();
+          alert(buyer);
+          $http.post('/api/listings/update', {
+            listing_id: $scope.listing._id,
+            title: $scope.listing.title,
+            author: $scope.listing.author,
+            isbn: $scope.listing.isbn,
+            cost: $scope.listing.cost,
+            stat: "pending",
+            buyers: buyer
+
+          }).success(function(data)
+          {
+              console.log("success, goin' home!");
+              $state.transitionTo('home');
+          })
+
+      }
+})
+}
+}
+]);
+
+
+
+
+
 
 bookRouter.controller('NewListCtrl', ['$scope', '$http', '$state', 'AuthFac', function($scope, $http, $state, AuthFac){
 
   $scope.listing = {};
 
   console.log("Hello World from new list controller");
+
 
   $scope.addListing = function(){
 

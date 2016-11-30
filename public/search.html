@@ -14,16 +14,21 @@
     <div class="noListing" ng-show="noResultsCheck()">
       No search results for the current criteria.
     </div>
-    <div class="eachListing" ng-show="!noResultsCheck()" ng-repeat="books in searchResults">
-      <div class="eachAttributeTitle"><a ui-sref="showlisting({listingId:books._id})">
-        {{books.title}} - {{books.author}}</a></div>
+    <div class="eachListing" ng-disabled="isPending(books.stat)" ng-show="!noResultsCheck()" ng-repeat="books in searchResults">
+      <div class="eachAttributeTitle"><a ng-disabled="isPending(books.stat)" ui-sref="showlisting({listingId:books._id})">
+        {{books.title}}</a></div>
 
-      <div class="eachAttributeSellerCost"><a ui-sref="showlisting({listingId:books._id})">
+      <div class="eachAttributeSellerCost"><a ng-disabled="{{pen}}" ui-sref="showlisting({listingId:books._id})">
+          Author: {{books.author}}</a></div>
+      <div class="eachAttributeSellerCost"><a ng-disabled={{pen}} ui-sref="showlisting({listingId:books._id})">
         ${{books.cost}} - Listed By {{books.seller}}</a></div>
-        
+
       <div class="eachAttribute"><b>Details:</b></div>
       <div class="eachAttribute"><b>ISBN:</b>{{books.isbn}}</div>
       <div class="eachAttribute"><b>Date Listed:</b>{{books.data_created}}</div>
+      <div class="eachAttribute">{{books.stat}}</div>
+      <div class="eachAttribute"><b>Buyer:</b>{{books.buyer}}</div>
+      <div class="eachAttribute"><b>id</b>{{books._id}}</div>
     </div>
 
 </div>

@@ -170,7 +170,6 @@ a {
 
 }
 .loginField{
-  border:1px solid #80bfff;
   width: 1 100%;
   padding:10px;
   height:45px;
@@ -178,13 +177,11 @@ a {
   font-size: 14pt;
 
 
-  border-radius: 6px;
 
   display:flex;
   align-items: center;
   justify-content: center;
 
-  box-shadow: 1px 1px 1px #66b3ff;
 
 }
 

@@ -1,7 +1,27 @@
-<div class="listingWrapper">
-  <div class="listingAttribute">Title: {{showlisting.title}}</div>
-  <div class="listingAttribute">Author: {{showlisting.author}}</div>
-  <div class="listingAttribute">ISBN: {{showlisting.isbn}}</div>
-  <div class="listingAttribute">Cost: {{showlisting.cost}}</div>
-  <div class="listingAttribute">Seller: {{showlisting.seller}}</div>
+<link rel="stylesheet" href="stylesheets/viewpagestyle.css" type="text/css">
+
+
+<div class="viewWrapper">
+
+<div class="eachListing"  >
+  <div ng-disabled={{pending}} class="eachAttributeTitle"><a ui-sref="showlisting({listingId:books._id})">
+    {{showlisting.title}}</a></div>
+
+  <div class="eachAttributeSellerCost"><a ui-sref="showlisting({listingId:books._id})">
+      Author: {{showlisting.author}}</a></div>
+  <div class="eachAttributeSellerCost"><a ui-sref="showlisting({listingId:books._id})">
+    ${{showlisting.cost}} - Listed By {{showlisting.seller}}</a></div>
+
+  <div class="eachAttribute"><b>Details:</b></div>
+  <div class="eachAttribute"><b>ISBN:</b>{{showlisting.isbn}}</div>
+  <div class="eachAttribute"><b>Date Listed:</b>{{showlisting.data_created}}</div>
 </div>
+
+<div class="viewWrapper">
+  <div class="eachAttributeBuy" ng-disabled={{pending}} ng-show="isLoggedIn()" ng-click="placeBuy(showlisting._id)"> Place Buy Offer for ${{showlisting.cost}}<div>
+</div>
+</div>
+
+<div class="viewWrapper">
+    <div class="eachAttributeBuy" ng-disabled=!{{pending}} ng-show="isLoggedIn()">Sale Pending...</div>
+  </div>
