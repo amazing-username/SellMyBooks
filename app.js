@@ -11,7 +11,7 @@ var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 var users = require('./routes/userRoutes');
-var create_user = require('./routes/create_user');
+//var create_user = require('./routes/create_user');
 var listings = require('./routes/listingRoutes');
 
 
@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/create_user', create_user);
+//app.use('/create_user', create_user);
 app.use('/api', listings);
 
 // Add headers
