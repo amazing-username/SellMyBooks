@@ -19,24 +19,54 @@ router.route('/listings')
 		listing.condition = req.body.condition;
 		listing.notes = req.body.notes;
 		listing.seller = req.body.seller;
+		listing.buyer._id = "";
+		listing.buyer.offer = 0;
+		
 		listing.buyers = req.body.buyers
-		if (req.body.title && req.body.author && req.body.cost && req.body.stat && req.body.seller) {
+		//if (req.body.title && req.body.author && req.body.cost && req.body.stat && req.body.seller) {
 
+			listing.save(function(err) {
+				if (err) 
+					res.send(err);
+		 
+				res.json({message: 'Created Listing'});
+	
+			});
+
+		//} else {
+			
+			//res.json({message: 'Error 1 : Missing Required Fields'});
+
+		//}	
+
+});
+
+router.route('/listings/buy')
+
+	.post(function(req, res) {
+
+		Listing.findById(req.body.listing_id, function(err, listing) {
+		
+				
+			listing.buyer._id = req.body.buyer_id;
+			
+
+			if (req.body.offer) {
+
+				listing.buyer.offer = req.body.offer;
+			}
+
+			listing.stat = "pending";
+			
 			listing.save(function(err) {
 				if (err)
 					res.send(err);
 
-				res.json({message: 'Created Listing'});
-
+				res.json({message : "Listing Updated"});
+			
 			});
-
-		} else {
-
-			res.json({message: 'Error 1 : Missing Required Fields'});
-
-		}
-
-});
+	});
+});	
 
 router.route('/listings/update')
 
@@ -62,6 +92,18 @@ router.route('/listings/update')
 			}
 			if (req.body.stat) {
 				listing.stat = req.body.stat;
+			} 
+			if (req.body.class_name) {
+				listing.class_name = req.body.class_name;
+			}
+			if (req.body.major) {
+				listing.major = req.body.major;
+			}
+			if (req.body.condition) {
+				listing.condition = req.body.condition;
+			} 
+			if (req.body.notes) {
+				listing.notes = req.body.notes;
 			}
 
 			if(req.body.buyers) {
@@ -94,6 +136,39 @@ router.route('/listings/get/foruser')
 	});
 
 
+
+router.route('/listings/find')
+
+	.post(function(req, res) {
+
+		var query = new Array();
+		var index = 0;
+		//var search = "";
+	
+		if (req.body.title) {
+			//search += "title : \"" + req.body.title + "\",";
+			query[index] = {title : req.body.title};
+			console.log(query[index]);
+			index++;
+		}
+		if (req.body.author) {
+			query[index] = {author : req.body.title};
+			index++;
+		}
+		//var search = search.slice( 0 , -1);
+		//console.log(search);
+		
+		Listing.find(query, function(err, listings) {
+			
+			if (err)
+				res.send(err);
+			
+			res.json(listings);	
+				
+		});
+
+		var query = new Array();
+});
 
 router.route('/listings/get')
 
