@@ -1,6 +1,11 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+var docMessages = new Schema({
+	contact : String,
+	message : String
+});
+
 var ListingSchema = new Schema({
 	title : String,
 
@@ -30,7 +35,8 @@ var ListingSchema = new Schema({
 	buyer : {
 		_id : String,
 		offer : Number
-	}			
+	},
+	messages : [docMessages]			
 });
 
 module.exports = mongoose.model('Listing' , ListingSchema);

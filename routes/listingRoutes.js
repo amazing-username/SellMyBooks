@@ -41,6 +41,22 @@ router.route('/listings')
 
 });
 
+router.route('/listings/message')
+
+	.post(function(req, res) {
+
+		Listing.findById(req.body.listing_id, function(err, listing) {
+		
+			listing.messages.push({contact : req.body.contact_id, message : req.body.message});
+
+			listing.save(function(err) {
+				if (err) return handleError(err)
+				
+				res.json({message : "Sent Message"});
+			});
+		});
+});	
+
 router.route('/listings/buy')
 
 	.post(function(req, res) {
