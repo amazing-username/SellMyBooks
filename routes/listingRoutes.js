@@ -6,6 +6,12 @@ var Listing = require('../models/listings.js');
 router.route('/listings')
 
 	.post(function(req, res) {
+
+		if (!req.body.title || !req.body.author || !req.body.isbn || !req.body.cost || !req.body.stat || !req.body.class_name || !req.body.major || !req.body.condition || !req.body.notes || !req.body.seller) {
+		
+			res.json({message : "Error : Missing Field"});
+
+		} else {
 	
 		var listing = new Listing();
 		listing.title = req.body.title;
@@ -19,9 +25,8 @@ router.route('/listings')
 		listing.notes = req.body.notes;
 		listing.seller = req.body.seller;
 		listing.buyer._id = "";
+		listing.username = "";
 		listing.buyer.offer = 0;
-		
-	//	if (req.body.title && req.body.author && req.body.cost && req.body.stat && req.body.seller) {
 
 			listing.save(function(err) {
 				if (err) 
@@ -30,12 +35,7 @@ router.route('/listings')
 				res.json({message: 'Created Listing'});
 	
 			});
-
-		//} else {
-			
-		//	res.json({message: 'Error 1 : Missing Required Fields'});
-
-		//}	
+		}	
 
 });
 
@@ -53,7 +53,24 @@ router.route('/listings/message')
 				res.json({message : "Sent Message"});
 			});
 		});
-});	
+});
+
+router.route('/listings/comment') 
+	
+	.post(function(req, res) {
+
+		Listing.findById(req.body.listing_id, function(err, listing) {
+
+			listing.comments.push({contact : req.body.contact_id, message : req.body.message});
+
+			listing.save(function(err) {
+				if (err) return handleError (err)
+			
+				res.json({message : "Sent Message"});
+			});
+		});
+});
+	
 
 router.route('/listings/buy')
 
@@ -127,39 +144,6 @@ router.route('/listings/update')
 				res.json({ message: "Listing Updated"});
 			});
 		});
-});
-
-router.route('/listings/find')
-
-	.post(function(req, res) {
-
-		var query = new Array();
-		var index = 0;
-		//var search = "";
-	
-		if (req.body.title) {
-			//search += "title : \"" + req.body.title + "\",";
-			query[index] = {title : req.body.title};
-			console.log(query[index]);
-			index++;
-		}
-		if (req.body.author) {
-			query[index] = {author : req.body.title};
-			index++;
-		}
-		//var search = search.slice( 0 , -1);
-		//console.log(search);
-		
-		Listing.find(query, function(err, listings) {
-			
-			if (err)
-				res.send(err);
-			
-			res.json(listings);	
-				
-		});
-
-		var query = new Array();
 });
 
 router.route('/listings/get')
