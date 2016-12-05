@@ -127,7 +127,9 @@ bookRouter.controller('UserHomeCtrl', ['$scope', '$http', '$state', 'AuthFac', f
       }
     }
   };
-  $http.post('/api/listings/get/foruser', {
+
+  $http.post('/api/listings/get/foruser',
+      {
         seller: AuthFac.currentUser()
       }).
       success(function(data)
@@ -136,15 +138,17 @@ bookRouter.controller('UserHomeCtrl', ['$scope', '$http', '$state', 'AuthFac', f
         console.log(data);
         console.log("got data back from search.");
 
-      }).error(function(data)
+      })
+      .error(function(data)
       {
 
         alert("You messed something up.");
         console.log("error, WHAT DID YOU DO");
 
-      })
+      })}
 
-    }]);
+
+    ]);
 
 
 bookRouter.controller('LoginCtrl', ['$scope', '$http', '$state', 'AuthFac', function($scope, $http, $state, AuthFac){
@@ -296,7 +300,7 @@ bookRouter.controller('SearchCtrl', ['$scope', '$http', '$state', '$stateParams'
         }).error(function(data)
         {
 
-          alert("You messed something up.");
+          alert("Your search is not generating any results");
           console.log("error, WHAT DID YOU DO");
 
         })
@@ -560,7 +564,7 @@ bookRouter.controller('NewListCtrl', ['$scope', '$http', '$state', 'AuthFac', fu
       }).error(function(data)
       {
 
-        alert("You messed something up.");
+        alert("You didn't fill in forms.");
         console.log("error, WHAT DID YOU DO");
 
       })

@@ -1,13 +1,23 @@
 .viewWrapper
 {
   display:flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  width:80%;
+  width:80%
 margin:auto;
 
 
+}
+.h1{
+  display:flex;
+  width:100%;
+
+}
+.h2{
+  display:flex;
+  width:100%;
+  
 }
 
 .resultsTable
