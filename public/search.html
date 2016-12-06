@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="stylesheets/searchPageStyle.css" type="text/css">
+
+<div class="searchPageWrapper">
+<div class="searchPageLeft">
+  <form class="detailOptions">
+    <div class="detailItem"> Title:</div> <input class="detailItem" ng-change="searchListing()" type="text" name="title" ng-model="listing.title">
+    <div class="detailItem">Author: </div><input class="detailItem" ng-change="searchListing()" type="text" name="author" ng-model="listing.author">
+    <div class="detailItem">ISBN: </div><input class="detailItem" ng-change="searchListing()" type="text" name="isbn" ng-model="listing.isbn">
+    <div class="detailItem">Cost: </div><input class="detailItem" min="1" max="1000" ng-change="searchListing()" type="number" name="cost" ng-model="listing.cost">
+  </form>
+</div>
+<div class="searchPageRight">
+
+    <div class="noListing" ng-show="noResultsCheck()">
+      No search results for the current criteria.
+    </div>
+    <div class="eachListing" ng-disabled="isPending(books.stat)" ng-show="!noResultsCheck()" ng-repeat="books in searchResults">
+      <div class="eachAttributeTitle"><a ng-disabled="isPending(books.stat)" ui-sref="showlisting({listingId:books._id})">
+        {{books.title}}</a></div>
+
+      <div class="eachAttributeSellerCost"><a ng-disabled="{{pen}}" ui-sref="showlisting({listingId:books._id})">
+          Author: {{books.author}}</a></div>
+      <div class="eachAttributeSellerCost"><a ng-disabled={{pen}} ui-sref="showlisting({listingId:books._id})">
+        ${{books.cost}} - Listed By {{books.seller}}</a></div>
+
+      <div class="eachAttribute"><b>Details:</b></div>
+      <div class="eachAttribute"><b>ISBN:</b>{{books.isbn}}</div>
+      <div class="eachAttribute"><b>Date Listed:</b>{{books.data_created}}</div>
+      <div class="eachAttribute">{{books.stat}}</div>
+      <div class="eachAttribute"><b>Buyer:</b>{{books.buyer}}</div>
+      <div class="eachAttribute"><b>id</b>{{books._id}}</div>
+    </div>
+
+</div>
