@@ -275,3 +275,24 @@ a {
 .navLink:hover, .navLinkMiddle:hover{
   background-color: #003366;
 }
+.logoBox {
+	top : 100px;
+	position : relative;
+}
+.photo {
+
+	height : 350px;
+	width :  250px;
+	
+}
+.imgholder {
+	margin-top : 250px;
+	position : relative;
+	top : 400px;
+}	
+.imglogo {
+	width : 100px;
+	margin-left : 45%;
+}	
+
+
