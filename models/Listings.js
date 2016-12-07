@@ -1,32 +1,42 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+var docMessages = new Schema({
+	contact : String,
+	message : String
+});
+
 var ListingSchema = new Schema({
 	title : String,
+
 	author : String,
+
 	isbn : String,
-	cost : {type: Number},
+
+	cost : Number,
+
 	stat : String,
-buyers: String,
+
 	data_created : {
 		type: Date,
 		default: Date.now
-	}	,
-	class_name : {
-		type : String
 	},
-	major : {
-		type : String
+
+	class_name : String,
+
+	major : String,
+
+	condition : String,
+
+	notes : String,
+
+	seller : String,
+
+	buyer : {
+		_id : String,
+		offer : Number
 	},
-	condition : {
-		type : String
-	},
-	notes : {
-		type : String
-	},
-	seller : {
-		type : String
-	}
+	messages : [docMessages]			
 });
 
 module.exports = mongoose.model('Listing' , ListingSchema);

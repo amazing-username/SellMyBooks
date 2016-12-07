@@ -1,0 +1,98 @@
+.headerWrap{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80% auto;
+
+
+}
+.hw1{
+  justify-content: center;
+  align-items: center;
+  width:100%;
+  font-size:24px;
+  text-align: center;
+}
+.hw2{
+  justify-content: center;
+  align-items: center;
+  width:100%;
+  font-size:20px;
+  text-align: center;
+}
+.pageWrap{
+  display:flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width:80% auto;
+}
+
+.userWrapper{
+
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width:80%;
+  margin:auto;
+
+}
+.pendingFlag{
+  align-items: center;
+  justify-content: center;
+  display:flex;
+  width:100%;
+  text-align: center;
+  font-size: 22px;
+  padding-bottom: 5px;
+  background-color: blue;
+
+}
+.eachListing
+{
+  display:flex;
+  align-items: center;
+  width:100%;
+  flex-flow: wrap;
+  background-color: #66b3ff;
+  color: white;
+  box-sizing: border-box;
+  border-radius: 5px;
+  text-shadow: 3px 3px 3px #4da6ff;
+  margin-bottom:10px;
+  border: 2px solid #003366;
+}
+
+.eachAttribute{
+  display:flex;
+  width: 100% ;
+  background-color: white;
+  color: black;
+  text-shadow: none;
+  font-size:12px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;;
+
+  padding-bottom: 5px;
+}
+.eachAttributeTitle{
+  align-items: center;
+  justify-content: center;
+  display:flex;
+  width:100%;
+  text-align: center;
+  font-size: 18px;
+  padding-bottom: 5px;
+
+}
+.eachAttributeSellerCost{
+  align-items: center;
+  justify-content: center;
+  display:flex;
+  width:100%;
+  text-align: center;
+  font-size: 14px;
+  padding-bottom: 5px;
+}

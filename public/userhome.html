@@ -1,32 +1,48 @@
-<h1>Hello, {{ getUser() }}</h1>
-<h2>Your current listings:</h2>
-<div class="flexwrapper">
-  <table class="listAllTable">
-    <thead>
-      <tr>
-        <th>Link</th>
+<link rel="stylesheet" href="stylesheets/userHomeStyle.css" type="text/css"></link>
 
-        <th>Title</th>
-        <th>Author</th>
-        <th>ISBN</th>
-        <th>Cost</th>
-        <th>Status</th>
-        <th>Listed On</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="books in usersListings">
 
-        <td><a ui-sref="showlisting({listingId:books._id})">View</a></td>
+<div class="pagewrap">
+<div class="headerWrap">
+  <div class="hw1">Hello, {{ getUser() }}</hw1>
+  <div class="hw2">Your current listings:</hw2>
+</div>
+<div class="userWrapper">
+  <div class="eachListing" ng-show="noResultsCheck()"> You don't have any listings currently for sale. </div>
 
-        <td>{{books.title}}</td>
-        <td>{{books.author}}</td>
-        <td>{{books.isbn}}</td>
-        <td>{{books.cost}}</td>
-        <td>{{books.stat}}</td>
-        <td>{{books.data_created}}</td>
+    <div class="eachListing" ng-show="!noResultsCheck()" ng-repeat="books in usersListings">
+      <div class="pendingFlag" ng-show="pendingTF($index)"> -PENDING SALE - </div>
+      <div class="eachAttributeTitle">{{books.title}} </div>
+      <div class="eachAttributeSellerCost">Author: {{books.author}} </div>
+      <div class="eachAttributeSellerCost">{{books.cost}} - Listed By {{books.seller}} </div>
 
-      </tr>
-    </tbody>
-  </table>
+      <div class="eachAttribute"><b>Details:</b> </div>
+      <div class="eachAttribute"><b>ISBN:</b>{{books.isbn}} </div>
+      <div class="eachAttribute"><b>Date Listed:</b>{{books.data_created}} </div>
+      <div class="eachAttribute"><b>Status:</b>{{books.stat}} </div>
+      <div class="eachAttribute"><b>Buyer:</b>{{books.buyers}} </div>
+      <div class="eachAttribute"><b>id</b>{{books._id}} </div>
+      <div class="eachAttribute" ng-show="pendingTF($index)" ng-click="acceptBuy(books._id)">Accept The Offer</div>
+    </div>
+
+</div>
+<div class="headerWrap">
+  <h2>Your sold listings</h2>
+</div>
+<div class="userWrapper">
+    <div class="eachListing" ng-show="noResultsSoldCheck()"> You don't have any listings that have been sold. </div>
+    <div class="eachListing"  ng-show="!noResultsSoldCheck()" ng-repeat="books in usersListingsSold">
+      <div class="eachAttributeTitle">{{books.title}} </div>
+      <div class="eachAttributeSellerCost">Author: {{books.author}} </div>
+      <div class="eachAttributeSellerCost">{{books.cost}} - Listed By {{books.seller}} </div>
+
+      <div class="eachAttribute"><b>Details:</b> </div>
+      <div class="eachAttribute"><b>ISBN:</b>{{books.isbn}} </div>
+      <div class="eachAttribute"><b>Date Listed:</b>{{books.data_created}} </div>
+      <div class="eachAttribute">{{books.stat}} </div>
+      <div class="eachAttribute"><b>Buyer:</b>{{books.buyer}} </div>
+      <div class="eachAttribute"><b>id</b>{{books._id}} </div>
+      <div class="eachAttribute" ng-show="pendingTF($index)" ng-click="acceptBuy(books._id)">Accept The Offer</div>
+    </div>
+
+</div>
 </div>
