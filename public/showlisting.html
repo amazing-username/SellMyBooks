@@ -15,13 +15,16 @@
   <div class="eachAttribute"><b>Details:</b></div>
   <div class="eachAttribute"><b>ISBN:</b>{{showlisting.isbn}}</div>
   <div class="eachAttribute"><b>Date Listed:</b>{{showlisting.data_created}}</div>
+  <div class="eachAttribute"><b>Sale Status:</b>{{showlisting.stat}}</div>
+  <div class="eachAttribute"><b>Buyer:</b>{{showlisting.buyer}}</div>
+  <div class="eachAttribute"><b>id</b>{{showlisting._id}}</div>
 </div>
 
 <div class="viewWrapper">
-  <div class="eachAttributeBuy" ng-disabled={{pending}} ng-show="isLoggedIn()" ng-click="placeBuy(showlisting._id)"> Place Buy Offer for ${{showlisting.cost}}<div>
+  <div class="eachAttributeBuy" ng-show="isLoggedNotPending()" ng-click="placeBuy(showlisting._id)"> Place Buy Offer for ${{showlisting.cost}}<div>
 </div>
 </div>
 
 <div class="viewWrapper">
-    <div class="eachAttributeBuy" ng-disabled=!{{pending}} ng-show="isLoggedIn()">Sale Pending...</div>
+    <div class="eachAttributeBuy" ng-show="isPendingAndLogged()">Sale Pending. Not available to buy.</div>
   </div>
