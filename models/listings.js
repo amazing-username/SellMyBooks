@@ -34,9 +34,12 @@ var ListingSchema = new Schema({
 
 	buyer : {
 		_id : String,
+		username : String,
 		offer : Number
 	},
-	messages : [docMessages]			
+	messages : [docMessages],
+	
+	comments : [docMessages]			
 });
 
 module.exports = mongoose.model('Listing' , ListingSchema);
