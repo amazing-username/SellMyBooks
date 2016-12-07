@@ -16,12 +16,12 @@
     </div>
     <div class="eachListing"  ng-show="!noResultsCheck()" ng-repeat="books in searchResults">
       <div class="pendingFlag" ng-show="pendingTF($index)"> -PENDING SALE - </div>
-      <div class="eachAttributeTitle" ng-disabled={{checkPending($index)}}><a  ng-disabled={{checkPending($index)}} ui-sref="showlisting({listingId:books._id})">
+      <div class="eachAttributeTitle" ng-disabled={{checkPending($index)}}><a class="titleLink" ng-disabled={{checkPending($index)}} ui-sref="showlisting({listingId:books._id})">
         {{books.title}}</a></div>
 
-      <div class="eachAttributeSellerCost"><a ui-sref="showlisting({listingId:books._id})">
+      <div class="eachAttributeSellerCost"><a class="titleLinkSmall" ui-sref="showlisting({listingId:books._id})">
           Author: {{books.author}}</a></div>
-      <div class="eachAttributeSellerCost"><a ui-sref="showlisting({listingId:books._id})">
+      <div class="eachAttributeSellerCost"><a class="titleLinkSmall" ui-sref="showlisting({listingId:books._id})">
         <span id="currency-default">{{books.cost | currency}}</span> - Listed By {{books.seller}}</a></div>
 
       <div class="eachAttribute"><b>Details:</b></div>

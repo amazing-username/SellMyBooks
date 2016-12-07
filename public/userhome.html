@@ -8,8 +8,8 @@
 </div>
 <div class="userWrapper">
   <div class="eachListing" ng-show="noResultsCheck()"> You don't have any listings currently for sale. </div>
-
-    <div class="eachListing" ng-show="!noResultsCheck()" ng-repeat="books in usersListings">
+    <div ng-repeat="books in usersListings">
+    <div class="eachListing" ng-show="!noResultsCheck()">
       <div class="pendingFlag" ng-show="pendingTF($index)"> -PENDING SALE - </div>
       <div class="eachAttributeTitle">{{books.title}} </div>
       <div class="eachAttributeSellerCost">Author: {{books.author}} </div>
@@ -22,7 +22,35 @@
       <div class="eachAttribute"><b>Buyer:</b>{{books.buyers}} </div>
       <div class="eachAttribute"><b>id</b>{{books._id}} </div>
       <div class="pendingFlag" ng-show="pendingTF($index)" ng-click="acceptBuy(books._id)">Accept The Offer For:  <span id="currency-default">  {{books.cost | currency}}</span></div>
+
     </div>
+      <div ng-repeat="message in books.messages">
+      <div class="panel panel-default">
+        <div  class="panel-heading">From: {{message.contact}}</div>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+            <th>Message</th>
+            <th>Reply</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>{{message.message}}</td>
+            <td><button ng-click="sendMessage(message.listing_id)" type="btn btn-default">Default</button></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <form class="viewOptions" ng-show="checkMessageBox()" ng-submit="submitMessage()">
+        Message From: {{messageSender}}
+        <input type="text_area" ng-model="message.text">
+        <button type="submit">Send</button>
+
+      </form>
+    </div>
+
 
 </div>
 <div class="headerWrap">

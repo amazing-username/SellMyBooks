@@ -9,8 +9,7 @@ router.route('/listings')
 
 
 		var listing = new Listing();
-		listing.title = req.body.title;
-		listing.author = req.body.author;
+
 		listing.isbn = req.body.isbn;
 		listing.cost = req.body.cost;
 		listing.stat = req.body.stat;
@@ -47,7 +46,7 @@ router.route('/listings/message')
 
 		Listing.findById(req.body.listing_id, function(err, listing) {
 
-			listing.messages.push({contact : req.body.contact_id, message : req.body.message});
+			listing.messages.push({listing_id: req.body.listing_id, contact : req.body.contact_id, message : req.body.message});
 
 			listing.save(function(err) {
 				if (err) return handleError(err)
