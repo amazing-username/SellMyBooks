@@ -33,7 +33,7 @@ bookRouter.controller('UserHomeCtrl', ['$scope', '$http', '$state', 'AuthFac', f
     var list = listingId;
     console.log("listingid   " + listingId);
     console.log("route: /api/listings/get/"+listingId);
-    $scope.route = "/api/listings/get/"+listingId;
+    $scope.route = serverBase+"/api/listings/get/"+listingId;
 
     $http.get($scope.route).success(function(response)
       {
@@ -63,7 +63,7 @@ bookRouter.controller('UserHomeCtrl', ['$scope', '$http', '$state', 'AuthFac', f
 };
 $scope.loadData = function()
 {
-  $http.post('/api/listings/get/foruser',
+  $http.post(serverBase+'/api/listings/get/foruser',
       {
         seller: AuthFac.currentUser()
       }).
@@ -108,7 +108,7 @@ $scope.loadData = function()
       })
 
 
-      $http.post('/api/listings/get/forusersold',
+      $http.post(serverBase+'/api/listings/get/forusersold',
           {
             seller: AuthFac.currentUser()
           }).

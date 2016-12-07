@@ -4,7 +4,7 @@ bookRouter.controller('EditCtrl', ['$scope', '$http', '$stateParams', '$state', 
   if($stateParams.listingId !== "")
   {
     $scope.listId = $stateParams.listingId;
-    $scope.route = "/api/listings/get/" + $scope.listId;
+    $scope.route = serverBase+"/api/listings/get/" + $scope.listId;
 
     $http.get($scope.route).success(function(response)
       {
@@ -23,7 +23,7 @@ bookRouter.controller('EditCtrl', ['$scope', '$http', '$stateParams', '$state', 
     $scope.editListing = function()
     {
 
-      $http.post('/api/listings/update', {
+      $http.post(serverBase+'/api/listings/update', {
         listing_id: $scope.listId,
         title: $scope.listing.title,
         author: $scope.listing.author,

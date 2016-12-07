@@ -9,7 +9,7 @@ bookRouter.controller('RegisterCtrl', ['$scope', '$http', '$state', function($sc
     console.log($scope.user.username);
     console.log($scope.user.password);
 
-    $http.post('/users/register', {
+    $http.post(serverBase+'/users/register', {
       username: $scope.user.username,
       password: $scope.user.password
     }).success(function(data)

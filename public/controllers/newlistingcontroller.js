@@ -9,7 +9,7 @@ bookRouter.controller('NewListCtrl', ['$scope', '$http', '$state', 'AuthFac', fu
 
 
 
-      $http.post('/api/listings', {
+      $http.post(serverBase+'/api/listings', {
         title: $scope.listing.title,
         author: $scope.listing.author,
         isbn: $scope.listing.isbn,
