@@ -1,15 +1,14 @@
 <link rel="stylesheet" href="stylesheets/userHomeStyle.css" type="text/css"></link>
 
 
-<div class="pagewrap">
 <div class="headerWrap">
-  <div class="hw1">Hello, {{ getUser() }}</hw1>
-  <div class="hw2">Your current listings:</hw2>
+  <div class="hw1">Hello, {{ getUser() }}</div>
+  <div class="hw2">Your current listings:</div>
 </div>
 <div class="userWrapper">
-  <div class="eachListing" ng-show="noResultsCheck()"> You don't have any listings currently for sale. </div>
-
-    <div class="eachListing" ng-show="!noResultsCheck()" ng-repeat="books in usersListings">
+  <div class="noFoundWarning"  ng-show="noResultsCheck()"> You don't have any listings currently for sale. </div>
+    <div ng-repeat="books in usersListings">
+    <div class="eachListing" ng-show="!noResultsCheck()">
       <div class="pendingFlag" ng-show="pendingTF($index)"> -PENDING SALE - </div>
       <div class="eachAttributeTitle">{{books.title}} </div>
       <div class="eachAttributeSellerCost">Author: {{books.author}} </div>
@@ -22,14 +21,14 @@
       <div class="eachAttribute"><b>Buyer:</b>{{books.buyers}} </div>
       <div class="eachAttribute"><b>id</b>{{books._id}} </div>
       <div class="pendingFlag" ng-show="pendingTF($index)" ng-click="acceptBuy(books._id)">Accept The Offer For:  <span id="currency-default">  {{books.cost | currency}}</span></div>
-    </div>
 
+    </div>
 </div>
 <div class="headerWrap">
-  <h2>Your sold listings</h2>
+  <div class="hw2">Your sold listings</div>
 </div>
 <div class="userWrapper">
-    <div class="eachListing" ng-show="noResultsSoldCheck()"> You don't have any listings that have been sold. </div>
+    <div class="noFoundWarning" ng-show="noResultsSoldCheck()"> You don't have any listings that have been sold. </div>
     <div class="eachListing"  ng-show="!noResultsSoldCheck()" ng-repeat="books in usersListingsSold">
       <div class="eachAttributeTitle">{{books.title}} </div>
       <div class="eachAttributeSellerCost">Author: {{books.author}} </div>
@@ -41,7 +40,6 @@
       <div class="eachAttribute">{{books.stat}} </div>
       <div class="eachAttribute"><b>Buyer:</b>{{books.buyer}} </div>
       <div class="eachAttribute"><b>id</b>{{books._id}} </div>
-      <div class="eachAttribute" ng-show="pendingTF($index)" ng-click="acceptBuy(books._id)">Accept The Offer</div>
     </div>
 
 </div>

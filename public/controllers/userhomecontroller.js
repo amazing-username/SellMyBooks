@@ -166,6 +166,48 @@ $scope.noResultsSoldCheck = function(){
     return false;
   }
 };
+$scope.checkMessageBox = function()
+{
+  if ($scope.showMessageBox == true)
+  {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+$scope.sendMessage = function(listingId)
+{
+  $scope.messageTo = listingId;
+  $scope.showMessageBox = true;
+  $scope.checkMessageBox();
+  $scope.messageSender=AuthFac.currentUser();
+};
+$scope.submitMessage = function()
+{
+
+  $http.post(serverBase+'/api/listings/message',
+
+      {
+        listing_id: $scope.messageTo,
+        contact_id: $scope.messageSender,
+        message: $scope.message.text
+
+      }).
+      success(function(data)
+      {
+        alert("You submitted the message.");
+        $scope.message={};
+        $scope.showMessageBox=false;
+        $scope.checkMessageBox();
+      }).error(function(data)
+    {
+      alert("Your message could not be sent.");
+    })
+
+};
+
+
 $scope.loadData();
 $scope.noResultsCheck();
 $scope.noResultsSoldCheck();

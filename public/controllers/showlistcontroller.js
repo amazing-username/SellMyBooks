@@ -44,41 +44,37 @@ bookRouter.controller('ShowCtrl', ['$scope', '$http', '$stateParams', '$state', 
     $state.transitionTo('home');
   }
 
-  $scope.placeBuy = function(listingId)
+  $scope.placeBuy = function(listId)
   {
-    var list = listingId;
-    console.log("listingid   " + listingId);
-    console.log("route: /api/listings/get/"+listingId);
-    $scope.route = serverBase+"/api/listings/get/"+listingId;
+    $scope.lid = listId;
 
-    $http.get($scope.route).success(function(response)
-      {
-        if(response)
+    $http.post(serverBase+'/api/listings/buy',
         {
-          $scope.listing = response;
-          var buyer = AuthFac.currentUser();
-          alert(buyer);
-          $http.post('/api/listings/update', {
-            listing_id: $scope.listing._id,
-            title: $scope.listing.title,
-            author: $scope.listing.author,
-            isbn: $scope.listing.isbn,
-            cost: $scope.listing.cost,
-            stat: "pending",
-            buyers: buyer
-
-          }).success(function(data)
-          {
-              console.log("success, goin' home!");
-              $state.transitionTo('home');
-          })
-
-      }
-})
-}
+          listing_id: $scope.lid,
+          buyer_id: AuthFac.currentUser()
 
 
-  scope.checkMessageBox = function()
+
+        }).
+        success(function(data)
+        {
+          alert("The Offer Was Entered.");
+          $state.redirectTo('search');
+
+        }).
+        error(function(data)
+        {
+          alert("Not Able To Place Offer.");
+
+
+
+
+      })
+};
+
+
+
+  $scope.checkMessageBox = function()
   {
     if ($scope.showMessageBox == true)
     {
@@ -88,12 +84,31 @@ bookRouter.controller('ShowCtrl', ['$scope', '$http', '$stateParams', '$state', 
       return false;
     }
   }
-  scope.placeBuy = function(listingId)
+  $scope.sendMessage = function(listingId)
   {
     $scope.messageTo = listingId;
+    $scope.message={};
     $scope.showMessageBox = true;
     $scope.checkMessageBox();
     $scope.messageSender=AuthFac.currentUser();
+  };
+  $scope.submitMessage = function()
+  {
+    $http.post(serverBase+'/api/listings/message',
+        {
+          listing_id: $scope.messageTo,
+          contact_id: $scope.messageSender,
+          message: $scope.message.text
+
+        }).
+        success(function(data)
+        {
+          alert("You submitted the message.");
+        }).error(function(data)
+      {
+        alert("Your message could not be sent.");
+      })
+
   };
   $scope.isPendingAndLogged = function(){
     if($scope.pending == true && AuthFac.isLoggedIn() == true)
@@ -115,7 +130,7 @@ bookRouter.controller('ShowCtrl', ['$scope', '$http', '$stateParams', '$state', 
         return false;
       }
     }
-  };
+  }
 
 
 }

@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var docMessages = new Schema({
+	listing_id : String,
 	contact : String,
 	message : String
 });
