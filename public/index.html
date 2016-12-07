@@ -1,1 +1,44 @@
+<!DOCTYPE html>
 
+<html ng-app="bookRouter">
+	<head>
+		<link rel="stylesheet" href="stylesheets/style.css" type="text/css">
+
+		<title>
+			SellMyBooks
+		</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+		<script src="controllers/mainController.js"></script>
+	</head>
+
+	<body>
+		<div class="container" ng-controller="MainCtrl">
+
+
+			<div class="navflexwrapper">
+				<a ui-sref=".home" class="navLink" >Home</a>
+				<a ui-sref=".search" class="navLink" >Search</a>
+				<!--Links for logged in user-->
+				<a ui-sref=".userhome" class="navLink" ng-show="getLoginStatus()">Your Account</a>
+				<a ui-sref=".newlisting" class="navLink" ng-show="getLoginStatus()">New Listing</a>
+				<a ui-sref=".logout" class ="navLink" ng-show="getLoginStatus()">Logout</a>
+				<!--Links for non user-->
+				<a ui-sref=".login" class="navLink" ng-show="!getLoginStatus()">Login</a>
+				<a ui-sref=".register" class="navLink" ng-show="!getLoginStatus()">Register</a>
+			</div>
+
+
+				<div ui-view></div>  <!--This is where partials get injected-->
+
+				<br/>
+
+				<div class="footer">
+ 						The SellMyBooks Application Fall 2016 &copy; &nbsp; 
+  						Site designed &amp; developed by: Jacob Tarter, Jazmin Andrade, Shuan Long and Kung Deng 
+				</div>
+				
+		</div>
+
+</body>
+</html>

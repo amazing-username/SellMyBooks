@@ -1,9 +1,23 @@
+
+html,
 body {
+
   padding: 0px;
   margin: 0px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #cce6ff;
+  /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
+  font: 14px "Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+  /*background-color: #FFFAFA;*/
+  
+  background:
+  radial-gradient(black 15%, transparent 16%) 0 0,
+  radial-gradient(black 15%, transparent 16%) 8px 8px,
+  radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+  radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+  background-color:#282828;
+  background-size:16px 16px;
+
 }
+
 
 a {
   color: #00B7FF;
@@ -49,8 +63,10 @@ a {
   margin: 25px;
   padding:10px;
   border: 1px solid black;
-  background-color: #99ccff;
-  border: 1px solid #80bfff;
+
+  background-color: #DCDCDC;
+
+  border: 1px solid #303030;
   text-align: center;
   padding:25px;
   height: 75px;
@@ -59,7 +75,8 @@ a {
   justify-content: center;
   border-radius:24px;
 
-  box-shadow: 2px 2px 2px #66b3ff;
+  /*box shadow for search box*/
+  box-shadow: 2px 2px 2px #303030;
 
 }
 .listingWrapper{
@@ -91,12 +108,10 @@ a {
   margin-bottom: 25px;
 
 
-
-
-
 }
-.hometitle{
-  background-color: #99ccff;
+.hometitle {
+  /*background-color: #99ccff;*/
+  background-color: #DCDCDC;
   color:white;
   text-align: center;
   display:flex;
@@ -104,16 +119,16 @@ a {
   justify-content: center;
   height: 100px;
   width:100%;
-  border: 1px solid #80bfff;
+  border: 1px solid #696969;
   margin-top: 10px;
-  text-shadow: 3px 3px 3px #80bfff;
+  text-shadow: 3px 3px 3px #696969;
   border-radius: 6px;
-  box-shadow: 2px 2px 2px #66b3ff;
+  box-shadow: 2px 2px 2px #696969;
 
 }
 
 .searchBar{
-  border:1px solid #80bfff;
+  border:1px solid #DCDCDC;
   width:70%;
   padding:10px;
   height:45px;
@@ -123,7 +138,7 @@ a {
   margin-right: 6px;
   border-radius: 6px;
 
-  box-shadow: 1px 1px 1px #66b3ff;
+  box-shadow: 1px 1px 1px #696969;
 
 }
 .searchBar:focus{
@@ -186,7 +201,7 @@ a {
 }
 
 .searchButton{
-  border:1px solid #4da6ff;
+  border:1px solid #3399ff;
   width:10%;
   background-color: #66b3ff;
   color: white;
@@ -203,9 +218,10 @@ a {
 }
 .linkButton{
 
-    border:1px solid #4da6ff;
+    /*border:1px solid #3399ff;*/
     width:15%;
-    background-color: #66b3ff;
+    /*green search button*/
+    background-color: #009933;
     color: white;
     font-size: 12pt;
     height:45px;
@@ -214,12 +230,12 @@ a {
     align-items: center;
     justify-content: center;
 
-    text-shadow: 3px 3px 3px #4da6ff;
+    text-shadow: 3px 3px 3px #3399ff;
 
     margin-left: 6px;
     border-radius: 6px;
 
-    box-shadow: 1px 1px 1px #3399ff;
+    box-shadow: 1px 1px 1px #4169E1;
 
 }
 
@@ -236,7 +252,7 @@ a {
 
 .navLink{
   flex: 1;
-  background-color: #66b3ff;
+  background-color: #4169E1;
   text-align: center;
   vertical-align: middle;
   display:flex;
@@ -246,6 +262,9 @@ a {
   text-decoration: none;
   color: white;
   box-sizing: border-box;
+
+  box-shadow: 5px 5px 5px #696969;
+
   border-bottom-left-radius: 18px;
   border-bottom-right-radius: 18px;
   border: 1px solid #003366;
@@ -275,3 +294,22 @@ a {
 .navLink:hover, .navLinkMiddle:hover{
   background-color: #003366;
 }
+
+/*----footer CSS-----*/
+
+.footer {
+  position: absolute;
+  clear: both;
+  background-color: #4169E1;
+  padding: 5px 5px 5px 5px;
+  color: white;
+  bottom: 10px;
+  text-align: center;
+  position: absolute;
+  bottom:0;
+  height: 50px; /*height of the footer*/
+  width: 100%;
+
+}
+
+
