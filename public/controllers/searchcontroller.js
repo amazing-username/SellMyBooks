@@ -108,7 +108,7 @@ bookRouter.controller('SearchCtrl', ['$scope', '$http', '$state', '$stateParams'
         $scope.searchTerms.seller = AuthFac.currentUser();
       }
 
-      $http.post('/api/listings/get/search',
+      $http.post(serverBase+'/api/listings/get/search',
           {
             title: $scope.searchTerms.title,
             author: $scope.searchTerms.author,

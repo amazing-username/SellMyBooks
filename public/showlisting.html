@@ -10,7 +10,7 @@
   <div class="eachAttributeSellerCost"><a ui-sref="showlisting({listingId:books._id})">
       Author: {{showlisting.author}}</a></div>
   <div class="eachAttributeSellerCost"><a ui-sref="showlisting({listingId:books._id})">
-    ${{showlisting.cost}} - Listed By {{showlisting.seller}}</a></div>
+    <span id="currency-default">{{showlisting.cost | currency}}</span>  - Listed By {{showlisting.seller}}</a></div>
 
   <div class="eachAttribute"><b>Details:</b></div>
   <div class="eachAttribute"><b>ISBN:</b>{{showlisting.isbn}}</div>
@@ -20,11 +20,14 @@
   <div class="eachAttribute"><b>id</b>{{showlisting._id}}</div>
 </div>
 
-<div class="viewWrapper">
-  <div class="eachAttributeBuy" ng-show="isLoggedNotPending()" ng-click="placeBuy(showlisting._id)"> Place Buy Offer for ${{showlisting.cost}}<div>
-</div>
+<div class="viewOptions">
+  <div class="optionButton" ng-show="isLoggedNotPending()" ng-click="placeBuy(showlisting._id)"> Place Buy Offer for ${{showlisting.cost}}</div>
+  <div class="optionButtonDisabled" ng-show="isPendingAndLogged()">Sale Pending. Not available to buy.</div>
+  <div class="optionButton" ng-show="isLoggedIn()" ng-click="sendMessage(showlisting._id)">Send Message To Seller</div>
 </div>
 
-<div class="viewWrapper">
-    <div class="eachAttributeBuy" ng-show="isPendingAndLogged()">Sale Pending. Not available to buy.</div>
-  </div>
+<form class="viewOptions" ng-show="checkMessageBox()">
+  Message From: {{messageSender}}
+  <input type="text_area">
+
+</form>

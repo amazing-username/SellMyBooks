@@ -17,7 +17,7 @@ margin:auto;
 .h2{
   display:flex;
   width:100%;
-  
+
 }
 
 .resultsTable
@@ -121,4 +121,56 @@ a{
   align-items: center;
   justify-content: center;
   width:100%;
+}
+.viewOptions{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-bottom: 25px;
+  width: 80%;
+  margin-left:auto;
+  margin-right:auto;
+  height:50px;
+
+}
+.optionButton{
+
+  flex: 1 auto;
+  background-color: #66b3ff;
+  text-align: center;
+  vertical-align: middle;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-decoration: none;
+  color: white;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  margin-left: 2px;
+  margin-right: 2px;
+
+  border: 3px solid #003366;
+
+}
+.optionButtonDisabled{
+  flex: 1 auto;
+  background-color: #66b3ff;
+  text-align: center;
+  vertical-align: middle;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-decoration: none;
+  color: white;
+  box-sizing: border-box;
+  margin-left: 2px;
+  margin-right: 2px;
+
+  border: 3px solid #003366;
+
+  cursor: not-allowed;
 }

@@ -1,6 +1,7 @@
 bookRouter.controller('ShowCtrl', ['$scope', '$http', '$stateParams', '$state', 'AuthFac', function($scope, $http, $stateParams, $state, AuthFac)
 {
   $scope.pending=false;
+  $scope.showMessageBox = false;
   $scope.listing="";
   if($stateParams.listingId !== "")
   {
@@ -76,6 +77,24 @@ bookRouter.controller('ShowCtrl', ['$scope', '$http', '$stateParams', '$state', 
 })
 }
 
+
+  scope.checkMessageBox = function()
+  {
+    if ($scope.showMessageBox == true)
+    {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  scope.placeBuy = function(listingId)
+  {
+    $scope.messageTo = listingId;
+    $scope.showMessageBox = true;
+    $scope.checkMessageBox();
+    $scope.messageSender=AuthFac.currentUser();
+  };
   $scope.isPendingAndLogged = function(){
     if($scope.pending == true && AuthFac.isLoggedIn() == true)
     {

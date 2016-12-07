@@ -54,13 +54,15 @@ bookRouter.controller('UserHomeCtrl', ['$scope', '$http', '$state', 'AuthFac', f
           }).success(function(data)
           {
               console.log("success, goin' home!");
-              $state.transitionTo('home');
+              alert("Offer Accepted, Marked As Sold.");
+              $scope.loadData();
           })
 
       }
 })
 };
-
+$scope.loadData = function()
+{
   $http.post('/api/listings/get/foruser',
       {
         seller: AuthFac.currentUser()
@@ -117,7 +119,7 @@ bookRouter.controller('UserHomeCtrl', ['$scope', '$http', '$state', 'AuthFac', f
             console.log("got data back from search.");
 
 
-            
+
 
 
 
@@ -136,36 +138,37 @@ bookRouter.controller('UserHomeCtrl', ['$scope', '$http', '$state', 'AuthFac', f
             console.log("error, WHAT DID YOU DO");
 
           })
+};
 
-          $scope.noResultsCheck = function(){
-            if ($scope.noResults == true)
-            {
-              console.log(" noResults var is set to true");
-              return true;
-            }
-            else
-            {
-              console.log(" noResults var is set to false");
+$scope.noResultsCheck = function(){
+  if ($scope.noResults == true)
+  {
+    console.log(" noResults var is set to true");
+    return true;
+  }
+  else
+  {
+    console.log(" noResults var is set to false");
 
-              return false;
-            }
-          };
-          $scope.noResultsSoldCheck = function(){
-            if ($scope.noResultsSold == true)
-            {
-              console.log(" noResultsSold var is set to true");
-              return true;
-            }
-            else
-            {
-              console.log(" noResultsSold var is set to false");
+    return false;
+  }
+};
+$scope.noResultsSoldCheck = function(){
+  if ($scope.noResultsSold == true)
+  {
+    console.log(" noResultsSold var is set to true");
+    return true;
+  }
+  else
+  {
+    console.log(" noResultsSold var is set to false");
 
-              return false;
-            }
-          };
-
-          $scope.noResultsCheck();
-          $scope.noResultsSoldCheck();
+    return false;
+  }
+};
+$scope.loadData();
+$scope.noResultsCheck();
+$scope.noResultsSoldCheck();
 
 
 
