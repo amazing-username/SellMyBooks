@@ -6,7 +6,7 @@ bookRouter.controller('ShowCtrl', ['$scope', '$http', '$stateParams', '$state', 
   if($stateParams.listingId !== "")
   {
     $scope.listId = $stateParams.listingId;
-    $scope.route = "/api/listings/get/" + $scope.listId;
+    $scope.route = serverBase+"/api/listings/get/" + $scope.listId;
 
     $scope.isLoggedIn=function(){
       if (AuthFac.isLoggedIn() == true) {
@@ -49,7 +49,7 @@ bookRouter.controller('ShowCtrl', ['$scope', '$http', '$stateParams', '$state', 
     var list = listingId;
     console.log("listingid   " + listingId);
     console.log("route: /api/listings/get/"+listingId);
-    $scope.route = "/api/listings/get/"+listingId;
+    $scope.route = serverBase+"/api/listings/get/"+listingId;
 
     $http.get($scope.route).success(function(response)
       {

@@ -24,7 +24,7 @@ bookRouter.factory('AuthFac', function ($http, $window){
       }
     };
     AuthFac.register = function(user){
-      return $http.post('/users/register', user).success(function(data){
+      return $http.post(serverBase+'/users/register', user).success(function(data){
         AuthFac.saveToken(data.token);
       });
     };

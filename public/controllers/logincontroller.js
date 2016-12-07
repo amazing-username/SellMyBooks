@@ -7,7 +7,7 @@ bookRouter.controller('LoginCtrl', ['$scope', '$http', '$state', 'AuthFac', func
    console.log($scope.user.username);
    console.log($scope.user.password);
 
-   $http.post('/users/login', {
+   $http.post(serverBase+'/users/login', {
      username: $scope.user.username,
      password: $scope.user.password
    }).success(function(data)
