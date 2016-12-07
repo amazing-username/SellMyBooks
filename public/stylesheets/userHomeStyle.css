@@ -3,7 +3,10 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  width: 80% auto;
+  width: 100%;
+  border-left: auto;
+  border-right: auto;
+  margin-bottom: 10px;
 
 
 }
@@ -79,9 +82,25 @@
   color: white;
   box-sizing: border-box;
   border-radius: 5px;
-  text-shadow: 3px 3px 3px #4da6ff;
+  text-shadow: 1px 1px 1px black;
   margin-bottom:10px;
-  border: 2px solid #003366;
+  border: 2px solid black;;
+}
+.noFoundWarning
+{
+  display:flex;
+  align-items: center;
+  width:100%;
+  flex-flow: wrap;
+  background-color: #66b3ff;
+  color: white;
+  box-sizing: border-box;
+  border-radius: 5px;
+  text-shadow: 1px 1px 1px black;
+  margin-bottom:10px;
+  border: 3px solid black;
+  justify-content: center;
+  text-align: center;
 }
 
 .eachAttribute{

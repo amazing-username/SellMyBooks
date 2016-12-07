@@ -44,38 +44,34 @@ bookRouter.controller('ShowCtrl', ['$scope', '$http', '$stateParams', '$state', 
     $state.transitionTo('home');
   }
 
-  $scope.placeBuy = function(listingId)
+  $scope.placeBuy = function(listId)
   {
-    var list = listingId;
-    console.log("listingid   " + listingId);
-    console.log("route: /api/listings/get/"+listingId);
-    $scope.route = serverBase+"/api/listings/get/"+listingId;
+    $scope.lid = listId;
 
-    $http.get($scope.route).success(function(response)
-      {
-        if(response)
+    $http.post(serverBase+'/api/listings/buy',
         {
-          $scope.listing = response;
-          var buyer = AuthFac.currentUser();
-          alert(buyer);
-          $http.post('/api/listings/update', {
-            listing_id: $scope.listing._id,
-            title: $scope.listing.title,
-            author: $scope.listing.author,
-            isbn: $scope.listing.isbn,
-            cost: $scope.listing.cost,
-            stat: "pending",
-            buyers: buyer
+          listing_id: $scope.lid,
+          buyer_id: AuthFac.currentUser()
 
-          }).success(function(data)
-          {
-              console.log("success, goin' home!");
-              $state.transitionTo('home');
-          })
 
-      }
-})
-}
+
+        }).
+        success(function(data)
+        {
+          alert("The Offer Was Entered.");
+          $state.redirectTo('search');
+
+        }).
+        error(function(data)
+        {
+          alert("Not Able To Place Offer.");
+
+
+
+
+      })
+};
+
 
 
   $scope.checkMessageBox = function()

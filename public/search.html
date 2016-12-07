@@ -8,6 +8,7 @@
     <div class="detailItem">ISBN: </div><input class="detailItem" ng-change="searchListing()" type="text" name="isbn" ng-model="listing.isbn">
     <div class="detailItem">Cost: </div><input class="detailItem" min="1" max="1000" ng-change="searchListing()" type="number" name="cost" ng-model="listing.cost">
   </form>
+  <img class="smallLogo" src="https://dl.dropboxusercontent.com/u/39670418/shield-logo-01.jpg"></img>
 </div>
 <div class="searchPageRight">
 
@@ -25,11 +26,12 @@
         <span id="currency-default">{{books.cost | currency}}</span> - Listed By {{books.seller}}</a></div>
 
       <div class="eachAttribute"><b>Details:</b></div>
+      <div class="eachAttribute"><b>Sale Status: </b>{{books.stat}}</div>
+      <div class="eachAttribute" ng-show="pendingTF($index)"><b>Buyer:</b>{{books.buyer._id}}</div>
       <div class="eachAttribute"><b>ISBN:</b>{{books.isbn}}</div>
       <div class="eachAttribute"><b>Date Listed:</b>{{books.data_created}}</div>
-      <div class="eachAttribute">{{books.stat}}</div>
-      <div class="eachAttribute"><b>Buyer:</b>{{books.buyer}}</div>
-      <div class="eachAttribute"><b>id</b>{{books._id}}</div>
+
+
 
     </div>
 
