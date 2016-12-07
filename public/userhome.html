@@ -13,7 +13,7 @@
       <div class="pendingFlag" ng-show="pendingTF($index)"> -PENDING SALE - </div>
       <div class="eachAttributeTitle">{{books.title}} </div>
       <div class="eachAttributeSellerCost">Author: {{books.author}} </div>
-      <div class="eachAttributeSellerCost">{{books.cost}} - Listed By {{books.seller}} </div>
+      <div class="eachAttributeSellerCost"><span id="currency-default">  {{books.cost | currency}}</span></div>
 
       <div class="eachAttribute"><b>Details:</b> </div>
       <div class="eachAttribute"><b>ISBN:</b>{{books.isbn}} </div>
@@ -21,7 +21,7 @@
       <div class="eachAttribute"><b>Status:</b>{{books.stat}} </div>
       <div class="eachAttribute"><b>Buyer:</b>{{books.buyers}} </div>
       <div class="eachAttribute"><b>id</b>{{books._id}} </div>
-      <div class="eachAttribute" ng-show="pendingTF($index)" ng-click="acceptBuy(books._id)">Accept The Offer</div>
+      <div class="pendingFlag" ng-show="pendingTF($index)" ng-click="acceptBuy(books._id)">Accept The Offer For:  <span id="currency-default">  {{books.cost | currency}}</span></div>
     </div>
 
 </div>

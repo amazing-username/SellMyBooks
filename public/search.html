@@ -22,7 +22,7 @@
       <div class="eachAttributeSellerCost"><a ui-sref="showlisting({listingId:books._id})">
           Author: {{books.author}}</a></div>
       <div class="eachAttributeSellerCost"><a ui-sref="showlisting({listingId:books._id})">
-        ${{books.cost}} - Listed By {{books.seller}}</a></div>
+        <span id="currency-default">{{books.cost | currency}}</span> - Listed By {{books.seller}}</a></div>
 
       <div class="eachAttribute"><b>Details:</b></div>
       <div class="eachAttribute"><b>ISBN:</b>{{books.isbn}}</div>

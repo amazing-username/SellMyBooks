@@ -38,8 +38,8 @@ var ListingSchema = new Schema({
 		offer : Number
 	},
 	messages : [docMessages],
-	
-	comments : [docMessages]			
+
+	comments : [docMessages]
 });
 
 module.exports = mongoose.model('Listing' , ListingSchema);
