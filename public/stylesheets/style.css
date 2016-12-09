@@ -1,6 +1,7 @@
 
 html,
 body {
+<<<<<<< HEAD
 
   padding: 0px;
   margin: 0px;
@@ -17,6 +18,12 @@ body {
   background-color:#282828;
   background-size:16px 16px;
 
+=======
+  padding: 0px;
+  margin: 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #cce6ff;
+>>>>>>> master
 }
 
 
@@ -25,6 +32,26 @@ a {
 }
 .navLink.a{
   color:white;
+<<<<<<< HEAD
+=======
+
+
+}
+img{
+  display: block;
+  max-width: 65%;
+  width:auto;
+  height:auto;
+
+}
+.logoImg{
+  display:flex;
+  width:65%;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  align-items: center;
+>>>>>>> master
 }
 
 .flexwrapper{
@@ -34,6 +61,10 @@ a {
   flex-wrap: wrap;
   margin-bottom: 25px;
   padding:10px;
+<<<<<<< HEAD
+=======
+  width:100%;
+>>>>>>> master
 
 }
 .searchPageWrapper{
@@ -64,10 +95,16 @@ a {
   margin: 25px;
   padding:10px;
   border: 1px solid black;
+<<<<<<< HEAD
 
   background-color: #DCDCDC;
 
   border: 1px solid #303030;
+=======
+  background-color: #66b3ff;
+  color: white;
+  border: 1px solid #80bfff;
+>>>>>>> master
   text-align: center;
   padding:25px;
   height: 75px;
@@ -75,11 +112,20 @@ a {
   align-items: center;
   justify-content: center;
   border-radius:24px;
+<<<<<<< HEAD
 
   /*box shadow for search box*/
   box-shadow: 2px 2px 2px #303030;
 
 }
+=======
+  text-shadow: 1px 1px 1px black;
+
+  box-shadow: 2px 2px 2px black;
+
+}
+
+>>>>>>> master
 .listingWrapper{
   display:flex;
   justify-content: center;
@@ -109,10 +155,19 @@ a {
   margin-bottom: 25px;
 
 
+<<<<<<< HEAD
 }
 .hometitle {
   /*background-color: #99ccff;*/
   background-color: #DCDCDC;
+=======
+
+
+
+}
+.hometitle{
+  background-color: #99ccff;
+>>>>>>> master
   color:white;
   text-align: center;
   display:flex;
@@ -120,16 +175,28 @@ a {
   justify-content: center;
   height: 100px;
   width:100%;
+<<<<<<< HEAD
   border: 1px solid #696969;
   margin-top: 10px;
   text-shadow: 3px 3px 3px #696969;
   border-radius: 6px;
   box-shadow: 2px 2px 2px #696969;
+=======
+  border: 1px solid #80bfff;
+  margin-top: 10px;
+  text-shadow: 3px 3px 3px #80bfff;
+  border-radius: 6px;
+  box-shadow: 2px 2px 2px #66b3ff;
+>>>>>>> master
 
 }
 
 .searchBar{
+<<<<<<< HEAD
   border:1px solid #DCDCDC;
+=======
+  border:1px solid #80bfff;
+>>>>>>> master
   width:70%;
   padding:10px;
   height:45px;
@@ -139,7 +206,11 @@ a {
   margin-right: 6px;
   border-radius: 6px;
 
+<<<<<<< HEAD
   box-shadow: 1px 1px 1px #696969;
+=======
+  box-shadow: 1px 1px 1px #66b3ff;
+>>>>>>> master
 
 }
 .searchBar:focus{
@@ -202,7 +273,11 @@ a {
 }
 
 .searchButton{
+<<<<<<< HEAD
   border:1px solid #3399ff;
+=======
+  border:1px solid #4da6ff;
+>>>>>>> master
   width:10%;
   background-color: #66b3ff;
   color: white;
@@ -219,10 +294,16 @@ a {
 }
 .linkButton{
 
+<<<<<<< HEAD
     /*border:1px solid #3399ff;*/
     width:15%;
     /*green search button*/
     background-color: #009933;
+=======
+    border:1px solid #4da6ff;
+    width:15%;
+    background-color: #66b3ff;
+>>>>>>> master
     color: white;
     font-size: 12pt;
     height:45px;
@@ -231,12 +312,20 @@ a {
     align-items: center;
     justify-content: center;
 
+<<<<<<< HEAD
     text-shadow: 3px 3px 3px #3399ff;
+=======
+    text-shadow: 3px 3px 3px #4da6ff;
+>>>>>>> master
 
     margin-left: 6px;
     border-radius: 6px;
 
+<<<<<<< HEAD
     box-shadow: 1px 1px 1px #4169E1;
+=======
+    box-shadow: 1px 1px 1px #3399ff;
+>>>>>>> master
 
 }
 
@@ -253,7 +342,11 @@ a {
 
 .navLink{
   flex: 1;
+<<<<<<< HEAD
   background-color: #00B4FF;
+=======
+  background-color: #66b3ff;
+>>>>>>> master
   text-align: center;
   vertical-align: middle;
   display:flex;
@@ -263,17 +356,28 @@ a {
   text-decoration: none;
   color: white;
   box-sizing: border-box;
+<<<<<<< HEAD
 
   box-shadow: 5px 5px 5px #696969;
 
   border-bottom-left-radius: 18px;
   border-bottom-right-radius: 18px;
   border: 1px solid #003366;
+=======
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  border: 1px solid black;
+  text-shadow: 1px 1px 1px black;
+>>>>>>> master
 
 }
 .navLinkMiddle{
   width:33.33%;
+<<<<<<< HEAD
   background-color: #00B4FF;
+=======
+  background-color: #66b3ff;
+>>>>>>> master
   text-align: center;
   vertical-align: middle;
   display:flex;
@@ -295,6 +399,7 @@ a {
 .navLink:hover, .navLinkMiddle:hover{
   background-color: #003366;
 }
+<<<<<<< HEAD
 
 /*----footer CSS-----*/
 
@@ -314,3 +419,5 @@ a {
 }
 
 
+=======
+>>>>>>> master

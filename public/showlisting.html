@@ -4,6 +4,7 @@
 <div class="viewWrapper">
 
 <div class="eachListing"  >
+<<<<<<< HEAD
   <div ng-disabled={{pending}} class="eachAttributeTitle"><a ui-sref="showlisting({listingId:books._id})">
     {{showlisting.title}}</a></div>
 
@@ -11,10 +12,20 @@
       Author: {{showlisting.author}}</a></div>
   <div class="eachAttributeSellerCost"><a ui-sref="showlisting({listingId:books._id})">
     ${{showlisting.cost}} - Listed By {{showlisting.seller}}</a></div>
+=======
+  <div ng-disabled={{pending}} class="eachAttributeTitle"><a class="titleLink" ui-sref="showlisting({listingId:books._id})">
+    {{showlisting.title}}</a></div>
+
+  <div class="eachAttributeSellerCost"><a class="titleLink" ui-sref="showlisting({listingId:books._id})">
+      Author: {{showlisting.author}}</a></div>
+  <div class="eachAttributeSellerCost"><a class="titleLink" ui-sref="showlisting({listingId:books._id})">
+    <span id="currency-default">{{showlisting.cost | currency}}</span>  - Listed By {{showlisting.seller}}</a></div>
+>>>>>>> master
 
   <div class="eachAttribute"><b>Details:</b></div>
   <div class="eachAttribute"><b>ISBN:</b>{{showlisting.isbn}}</div>
   <div class="eachAttribute"><b>Date Listed:</b>{{showlisting.data_created}}</div>
+<<<<<<< HEAD
 </div>
 
 <div class="viewWrapper">
@@ -25,3 +36,21 @@
 <div class="viewWrapper">
     <div class="eachAttributeBuy" ng-disabled=!{{pending}} ng-show="isLoggedIn()">Sale Pending...</div>
   </div>
+=======
+  <div class="eachAttribute"><b>Sale Status:</b>{{showlisting.stat}}</div>
+  <div class="eachAttribute"><b>Buyer:</b>{{showlisting.buyer._id}}</div>
+</div>
+
+<div class="viewOptions">
+  <div class="optionButton" ng-show="isLoggedNotPending()" ng-click="placeBuy(showlisting._id)"> Place Buy Offer for ${{showlisting.cost}}</div>
+  <div class="optionButtonDisabled" ng-show="isPendingAndLogged()">Sale Pending. Not available to buy.</div>
+</div>
+
+<form class="viewOptions" ng-show="checkMessageBox()" ng-submit="submitMessage()">
+  Message From: {{messageSender}}
+  <input type="text_area" ng-model="message.text">
+  <button type="submit">Send</button>
+
+</form>
+</div>
+>>>>>>> master

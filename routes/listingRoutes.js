@@ -9,8 +9,12 @@ router.route('/listings')
 
 
 		var listing = new Listing();
+<<<<<<< HEAD
 		listing.title = req.body.title;
 		listing.author = req.body.author;
+=======
+
+>>>>>>> master
 		listing.isbn = req.body.isbn;
 		listing.cost = req.body.cost;
 		listing.stat = req.body.stat;
@@ -21,11 +25,16 @@ router.route('/listings')
 		listing.seller = req.body.seller;
 		listing.buyer._id = "";
 		listing.buyer.offer = 0;
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> master
 		listing.buyers = req.body.buyers
 		//if (req.body.title && req.body.author && req.body.cost && req.body.stat && req.body.seller) {
 
 			listing.save(function(err) {
+<<<<<<< HEAD
 				if (err) 
 					res.send(err);
 		 
@@ -41,15 +50,55 @@ router.route('/listings')
 
 });
 
+=======
+				if (err)
+					res.send(err);
+
+				res.json({message: 'Created Listing'});
+
+			});
+
+		//} else {
+
+			//res.json({message: 'Error 1 : Missing Required Fields'});
+
+		//}
+
+});
+
+router.route('/listings/message')
+
+	.post(function(req, res) {
+
+		Listing.findById(req.body.listing_id, function(err, listing) {
+
+			listing.messages.push({listing_id: req.body.listing_id, contact : req.body.contact_id, message : req.body.message});
+
+			listing.save(function(err) {
+				if (err) return handleError(err)
+
+				res.json({message : "Sent Message"});
+			});
+		});
+});
+
+>>>>>>> master
 router.route('/listings/buy')
 
 	.post(function(req, res) {
 
 		Listing.findById(req.body.listing_id, function(err, listing) {
+<<<<<<< HEAD
 		
 				
 			listing.buyer._id = req.body.buyer_id;
 			
+=======
+
+
+			listing.buyer._id = req.body.buyer_id;
+
+>>>>>>> master
 
 			if (req.body.offer) {
 
@@ -57,16 +106,27 @@ router.route('/listings/buy')
 			}
 
 			listing.stat = "pending";
+<<<<<<< HEAD
 			
+=======
+
+>>>>>>> master
 			listing.save(function(err) {
 				if (err)
 					res.send(err);
 
 				res.json({message : "Listing Updated"});
+<<<<<<< HEAD
 			
 			});
 	});
 });	
+=======
+
+			});
+	});
+});
+>>>>>>> master
 
 router.route('/listings/update')
 
@@ -92,7 +152,11 @@ router.route('/listings/update')
 			}
 			if (req.body.stat) {
 				listing.stat = req.body.stat;
+<<<<<<< HEAD
 			} 
+=======
+			}
+>>>>>>> master
 			if (req.body.class_name) {
 				listing.class_name = req.body.class_name;
 			}
@@ -101,7 +165,11 @@ router.route('/listings/update')
 			}
 			if (req.body.condition) {
 				listing.condition = req.body.condition;
+<<<<<<< HEAD
 			} 
+=======
+			}
+>>>>>>> master
 			if (req.body.notes) {
 				listing.notes = req.body.notes;
 			}
@@ -125,6 +193,10 @@ router.route('/listings/get/foruser')
 	if (req.body.seller) {
 		query.seller = req.body.seller;
 	}
+<<<<<<< HEAD
+=======
+	query.stat = {"$ne" : "sold"};
+>>>>>>> master
 
 	Listing.find(query, function (err, listings) {
 		if (err)
@@ -135,6 +207,27 @@ router.route('/listings/get/foruser')
 	});
 	});
 
+<<<<<<< HEAD
+=======
+	router.route('/listings/get/forusersold')
+
+	.post(function(req, res) {
+		var query = {}
+		if (req.body.seller) {
+			query.seller = req.body.seller;
+		}
+		query.stat = "sold";
+
+		Listing.find(query, function (err, listings) {
+			if (err)
+			{
+				res.send(err);
+			}
+			res.json(listings);
+		});
+		});
+
+>>>>>>> master
 
 
 router.route('/listings/find')
@@ -144,7 +237,11 @@ router.route('/listings/find')
 		var query = new Array();
 		var index = 0;
 		//var search = "";
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> master
 		if (req.body.title) {
 			//search += "title : \"" + req.body.title + "\",";
 			query[index] = {title : req.body.title};
@@ -157,6 +254,7 @@ router.route('/listings/find')
 		}
 		//var search = search.slice( 0 , -1);
 		//console.log(search);
+<<<<<<< HEAD
 		
 		Listing.find(query, function(err, listings) {
 			
@@ -165,6 +263,16 @@ router.route('/listings/find')
 			
 			res.json(listings);	
 				
+=======
+
+		Listing.find(query, function(err, listings) {
+
+			if (err)
+				res.send(err);
+
+			res.json(listings);
+
+>>>>>>> master
 		});
 
 		var query = new Array();
@@ -211,9 +319,15 @@ router.route('/listings/get/search')
 
 			query.seller = {"$ne" : req.body.seller};
 		}
+<<<<<<< HEAD
 		if (req.body.stat){
 			query.stat = {"$ne" : "sold"};
 		}
+=======
+
+			query.stat = {"$ne" : "sold"};
+
+>>>>>>> master
 
 		Listing.find(query, function (err, listings) {
 			if (err)

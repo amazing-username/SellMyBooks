@@ -3,6 +3,10 @@
 <html ng-app="bookRouter">
 	<head>
 		<link rel="stylesheet" href="stylesheets/style.css" type="text/css">
+<<<<<<< HEAD
+=======
+	
+>>>>>>> master
 
 		<title>
 			SellMyBooks
@@ -10,25 +14,52 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
 		<script src="controllers/mainController.js"></script>
+<<<<<<< HEAD
 	</head>
 
 	<body>
+=======
+		<script src="controllers/editcontroller.js"></script>
+		<script src="controllers/homecontroller.js"></script>
+		<script src="controllers/logincontroller.js"></script>
+		<script src="controllers/logoutcontroller.js"></script>
+		<script src="controllers/newlistingcontroller.js"></script>
+		<script src="controllers/registercontroller.js"></script>
+		<script src="controllers/searchcontroller.js"></script>
+		<script src="controllers/showlistcontroller.js"></script>
+		<script src="controllers/userhomecontroller.js"></script>
+		<script src="factories/authorizefactory.js"></script>
+		<script>//serverBase=":3000"</script>
+		<script>var serverBase=""</script>
+	</head>
+
+	<body >
+>>>>>>> master
 		<div class="container" ng-controller="MainCtrl">
 
 
 			<div class="navflexwrapper">
 				<a ui-sref=".home" class="navLink" >Home</a>
 				<a ui-sref=".search" class="navLink" >Search</a>
+<<<<<<< HEAD
 				<!--Links for logged in user-->
 				<a ui-sref=".userhome" class="navLink" ng-show="getLoginStatus()">Your Account</a>
 				<a ui-sref=".newlisting" class="navLink" ng-show="getLoginStatus()">New Listing</a>
 				<a ui-sref=".logout" class ="navLink" ng-show="getLoginStatus()">Logout</a>
 				<!--Links for non user-->
+=======
+				<!Links for logged in user>
+				<a ui-sref=".userhome" class="navLink" ng-show="getLoginStatus()">Your Account</a>
+				<a ui-sref=".newlisting" class="navLink" ng-show="getLoginStatus()">New Listing</a>
+				<a ui-sref=".logout" class ="navLink" ng-show="getLoginStatus()">Logout</a>
+				<!Links for non user>
+>>>>>>> master
 				<a ui-sref=".login" class="navLink" ng-show="!getLoginStatus()">Login</a>
 				<a ui-sref=".register" class="navLink" ng-show="!getLoginStatus()">Register</a>
 			</div>
 
 
+<<<<<<< HEAD
 				<div ui-view></div>  <!--This is where partials get injected-->
 
 				<br/>
@@ -41,4 +72,11 @@
 		</div>
 
 </body>
+=======
+				<div ui-view></div>  <!This is where partials get injected>
+		</div>
+
+	</body>
+
+>>>>>>> master
 </html>

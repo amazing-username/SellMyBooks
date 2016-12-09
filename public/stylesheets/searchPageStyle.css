@@ -32,27 +32,54 @@
 .resultsTable
 {
   background-color: white;
+<<<<<<< HEAD
   border: 3px solid blue;
+=======
+  border: 1px solid black;
+>>>>>>> master
   text-align: center;
   padding-left:10px;
   padding-right:10px;
   width:100%;
+<<<<<<< HEAD
 }
 a{
   text-decoration: none;
   color:white;
 }
+=======
+  box-shadow: 2px 2px 2px black;
+}
+.titleLink{
+  text-decoration: none;
+  color:white;
+}
+.titleLinkSmall{
+  text-decoration: none;
+  color:white;
+  font-size:12pt;
+}
+>>>>>>> master
 .detailOptions{
   background-color: #66b3ff;
   color: white;
   box-sizing: border-box;
   border-radius: 5px;
   width:100%;
+<<<<<<< HEAD
   text-shadow: 3px 3px 3px #4da6ff;
   padding:10px;
   align-items: flex-end;
   text-align: right;
   border: 2px solid #003366;
+=======
+  text-shadow: 1px 1px 1px black;
+  padding:10px;
+  align-items: flex-end;
+  text-align: right;
+  border: 2px solid black;
+  box-shadow: 2px 2px 2px black;
+>>>>>>> master
 
 }
 .detailItem{
@@ -74,10 +101,19 @@ a{
     color: white;
     box-sizing: border-box;
     border-radius: 5px;
+<<<<<<< HEAD
     text-shadow: 3px 3px 3px #4da6ff;
     padding-top:10px;
     margin-bottom:5px;
     border: 2px solid #003366;
+=======
+    text-shadow: 1px 1px 1px black;
+    padding-top:10px;
+    margin-bottom:5px;
+    border: 1px solid black;
+    box-shadow: 2px 2px 2px black;
+    border: 2px solid black;
+>>>>>>> master
 
 }
 .eachListing{
@@ -89,12 +125,48 @@ a{
   color: white;
   box-sizing: border-box;
   border-radius: 5px;
+<<<<<<< HEAD
   text-shadow: 3px 3px 3px #4da6ff;
   padding-top:10px;
   margin-bottom:15px;
   border: 2px solid #003366;
 
   ng-disabled={{isPending()}};
+=======
+  text-shadow: 1px 1px 1px black;
+
+  margin-bottom:15px;
+  border: 2px solid black;
+  box-shadow: 2px 2px 2px black;
+
+}
+.eachlistingpending{
+  display:flex;
+  align-items: center;
+  width:100%;
+  flex-flow: row wrap;
+  background-color: grey;
+  color: white;
+  box-sizing: border-box;
+  border-radius: 5px;
+  text-shadow: 1px 1px 1px black;
+
+  margin-bottom:15px;
+  border: 2px solid black;
+  box-shadow: 2px 2px 2px black;
+
+}
+.pendingFlag{
+  align-items: center;
+  justify-content: center;
+  display:flex;
+  width:100%;
+  text-align: center;
+  font-size: 22px;
+  padding-bottom: 5px;
+  background-color: blue;
+
+>>>>>>> master
 }
 .eachAttribute{
   display:flex;
@@ -117,6 +189,20 @@ a{
   padding-bottom: 5px;
 
 }
+<<<<<<< HEAD
+=======
+.eachAttributeTitleDisabled{
+  align-items: center;
+  justify-content: center;
+  display:flex;
+  width:100%;
+  text-align: center;
+  font-size: 22px;
+  padding-bottom: 5px;
+  background-color: black;
+
+}
+>>>>>>> master
 .eachAttributeSellerCost{
   align-items: center;
   justify-content: center;
@@ -126,3 +212,14 @@ a{
   font-size: 14px;
   padding-bottom: 10px;
 }
+<<<<<<< HEAD
+=======
+
+.smallLogo{
+  margin-top: 10px;
+  width:100%;
+  margin-left:auto;
+  margin-right:auto;
+
+}
+>>>>>>> master

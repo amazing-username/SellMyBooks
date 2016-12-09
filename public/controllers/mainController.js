@@ -30,6 +30,7 @@ bookRouter.config(function($stateProvider, $urlRouterProvider) {
       controller: 'NewListCtrl'
     })
 
+<<<<<<< HEAD
     .state('listall', {
       url: '/listall',
       templateUrl: 'partial-listall.html',
@@ -41,6 +42,8 @@ bookRouter.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'another-test.html'
     })
 
+=======
+>>>>>>> master
     .state('editlisting', {
       url: '/edit/:listingId',
       templateUrl: 'editlisting.html',
@@ -67,11 +70,14 @@ bookRouter.config(function($stateProvider, $urlRouterProvider) {
       url: '/logout',
       templateUrl: 'logout.html',
       controller: 'LogoutCtrl'
+<<<<<<< HEAD
     })
 
     .state('test', {
       url: '/test',
       templateUrl: 'partial-test.html'
+=======
+>>>>>>> master
     });
 });
 
@@ -109,6 +115,7 @@ bookRouter.controller('MainCtrl', ['$scope', '$http', 'AuthFac', function($scope
 
   }
 ]);
+<<<<<<< HEAD
 
 
 bookRouter.controller('UserHomeCtrl', ['$scope', '$http', '$state', 'AuthFac', function($scope, $http, $state, AuthFac){
@@ -606,3 +613,5 @@ bookRouter.factory('AuthFac', function ($http, $window){
     return AuthFac;
 
 });
+=======
+>>>>>>> master

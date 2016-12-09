@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1>Register User</h1>
 <div class="flexwrapper">
   <form ng-submit="addUser()" class="newUserForm">
@@ -7,3 +8,21 @@
   <button type="submit">Post</button>
   </form>
 </div>
+=======
+<link rel="stylesheet" href="stylesheets/authstyle.css" type="text/css">
+
+
+
+<h1>Register User</h1>
+<div class="authwrapper">
+  <div class="authstyle">
+  <form ng-submit="addUser()">
+    <div class="authfield">Username: <input type="text"  name="name" ng-model="user.username"></div>
+    <div class="authfield">Password: <input type="password" name="pw" ng-model="user.password"></div>
+    <div class="authfield">Confirm PW: <input type="password" name="pwconf" ng-model="user.password_conf"></div>
+
+  <button class = "authbutton" type="submit">Register</button>
+  </form>
+</div>
+</div>
+>>>>>>> master
